@@ -1,0 +1,42 @@
+name: Englische Seiten erzeugen
+
+# Läuft, sobald sich eine italienische Seite oder das Wörterbuch ändert,
+# erzeugt en/ und sitemap.xml neu und schreibt das Ergebnis zurück ins Repo.
+# Damit kann die englische Fassung nicht veralten, auch wenn jemand
+# vergisst, build.py lokal auszuführen.
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - index.html
+      - dona.html
+      - magazine.html
+      - i18n/en.json
+      - build.py
+      - .github/workflows/build-en.yml
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Englische Seiten bauen
+        run: python3 build.py
+
+      - name: Ergebnis übernehmen
+        run: |
+          if [ -z "$(git status --porcelain en sitemap.xml)" ]; then
+            echo "Englische Fassung ist bereits aktuell."
+            exit 0
+          fi
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add en sitemap.xml
+          git commit -m "Englische Seiten neu erzeugt (automatisch)"
+          git push
