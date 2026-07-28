@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Automatisch erzeugt aus magazine.html + i18n/en.json (python3 build.py). Nicht direkt bearbeiten. -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>BE Magazine — Bella Esperanza | BE</title>
+<meta name="description" content="Bella Esperanza’s collaborations with JR Studio, The Island Experience Festival, Mark Giusti, Esemplare, ON and Kult Magazine. Art, fashion, music and sport in the service of education.">
+<link rel="canonical" href="https://www.bellaesperanza.org/en/magazine.html">
+<link rel="alternate" hreflang="it" href="https://www.bellaesperanza.org/magazine.html">
+<link rel="alternate" hreflang="en" href="https://www.bellaesperanza.org/en/magazine.html">
+<link rel="alternate" hreflang="x-default" href="https://www.bellaesperanza.org/magazine.html">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://www.bellaesperanza.org/en/magazine.html">
+<meta property="og:title" content="BE Magazine — Bella Esperanza | BE">
+<meta property="og:description" content="Bella Esperanza’s collaborations with JR Studio, The Island Experience Festival, Mark Giusti, Esemplare, ON and Kult Magazine. Art, fashion, music and sport in the service of education.">
+<meta property="og:image" content="https://www.bellaesperanza.org/assets/img/mag-on.jpg">
+<meta property="og:locale" content="en_GB">
+<meta property="og:locale:alternate" content="it_IT">
+<meta name="theme-color" content="#141312">
+<link rel="icon" href="../assets/img/favicon.png" sizes="any">
+<link rel="apple-touch-icon" href="../assets/img/favicon.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&family=Inter:wght@400;500;600;700&family=Cardo:ital@0;1&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/style.css">
+
+<style>
+  /* article layout — only used on this page */
+  .article {
+    display: grid;
+    grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+    gap: clamp(1.75rem, 4vw, 4rem);
+    align-items: center;
+    padding-block: clamp(2.5rem, 5vw, 4.5rem);
+    border-top: 1px solid var(--line);
+  }
+  .article:nth-child(even) .article__media { order: 2; }
+  .section--dark .article { border-top-color: var(--line-dark); }
+  @media (max-width: 880px) {
+    .article { grid-template-columns: minmax(0, 1fr); }
+    .article:nth-child(even) .article__media { order: 0; }
+  }
+  .article__meta {
+    display: flex; flex-wrap: wrap; gap: var(--s-3);
+    font-size: .72rem; letter-spacing: .14em; text-transform: uppercase;
+    font-weight: 700; color: var(--orange);
+    margin-bottom: var(--s-4);
+  }
+  .article__meta span:not(:first-child)::before { content: "· "; opacity: .5; }
+  .article ul { padding-left: 1.1em; }
+  .article ul li { font-size: .95rem; color: var(--ink-3); }
+</style>
+</head>
+
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="site-header">
+  <div class="header-inner">
+    <a class="brand" href="index.html" aria-label="Bella Esperanza — home">
+      <img class="logo-light" src="../assets/img/logo-white.svg" alt="Bella Esperanza" width="128" height="48">
+      <img class="logo-dark" src="../assets/img/logo-dark.svg" alt="Bella Esperanza" width="128" height="48">
+    </a>
+    <nav class="nav" aria-label="Principale">
+      <ul class="nav-list">
+        <li><a class="nav-link" href="index.html#storia">Our story</a></li>
+        <li><a class="nav-link" href="index.html#progetto">The project</a></li>
+        <li><a class="nav-link" href="index.html#creativita">Creativity</a></li>
+        <li><a class="nav-link" href="index.html#metodo">How we work</a></li>
+        <li><a class="nav-link" href="index.html#community">Community</a></li>
+        <li><a class="nav-link is-active" href="magazine.html">Magazine</a></li>
+      </ul>
+      <div class="nav-tools">
+        <div class="lang" role="group" aria-label="Lingua / Language">
+          <a href="../magazine.html" hreflang="it" lang="it">IT</a>
+          <span aria-current="true">EN</span>
+        </div>
+        <a class="btn btn--accent nav-cta" href="dona.html">Donate now</a>
+        <button class="burger" type="button" aria-expanded="false" aria-controls="drawer" aria-label="Menu"><span></span></button>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<div class="drawer" id="drawer">
+  <nav aria-label="Menu mobile">
+    <ul>
+      <li><a href="index.html#storia">Our story</a></li>
+      <li><a href="index.html#progetto">The project</a></li>
+      <li><a href="index.html#creativita">Creativity</a></li>
+      <li><a href="index.html#metodo">How we work</a></li>
+      <li><a href="index.html#community">Community</a></li>
+      <li><a href="magazine.html">Magazine</a></li>
+    </ul>
+  </nav>
+  <a class="btn btn--accent btn--lg" href="dona.html">Donate now</a>
+</div>
+
+<main id="main">
+
+<section class="page-hero mesh grain">
+  <div class="wrap">
+    <p class="eyebrow">BE Magazine</p>
+    <h1 class="display-xl">Our collaborations</h1>
+    <p class="lede" style="margin-top:var(--s-5);max-width:52ch">We believe in inspiring people and creating a movement of change and love through collaboration. Here is who walks with us.</p>
+  </div>
+</section>
+
+<section class="section section--tight">
+  <div class="wrap">
+
+    <!-- ON -->
+    <article class="article" id="on" data-reveal>
+      <div class="article__media">
+        <div class="frame ratio-3-2 frame--hover frame--tint" style="--tint:linear-gradient(150deg,rgba(254,204,78,.28),rgba(243,121,50,.22))">
+          <img src="../assets/img/mag-on.jpg" alt="Milan Relay Marathon insieme a ON" loading="lazy" width="1800" height="1200">
+        </div>
+      </div>
+      <div>
+        <p class="article__meta"><span>Sport</span><span>Aprile 2024</span><span>Milano</span></p>
+        <h2 class="display-m">ON × Bella Esperanza</h2>
+        <p class="lede">Driving social change and energising the new generations.</p>
+        <p>In April 2024 we partnered with ON for the Milan Relay Marathon, combining the power of sport with fundraising for education in underserved communities. Together we created a movement that highlighted the transformative impact of access to learning.</p>
+        <ul>
+          <li><b>An exclusive training session</b> with the ON team and elite athletes from Tuscany Camp.</li>
+          <li><b>Running the relay marathon</b>, in a spirit of perseverance and shared goals.</li>
+          <li><b>Social media content</b> to amplify the cause and engage a wider audience.</li>
+          <li><b>Digital PR campaigns</b> to raise awareness and spark meaningful conversations.</li>
+        </ul>
+      </div>
+    </article>
+
+    <!-- Esemplare -->
+    <article class="article" id="esemplare" data-reveal>
+      <div class="article__media">
+        <div class="frame ratio-3-2 frame--hover frame--tint" style="--tint:linear-gradient(150deg,rgba(107,105,176,.28),rgba(240,76,113,.22))">
+          <img src="../assets/img/mag-esemplare.jpg" alt="Capi Esemplare, il brand che dona il 100% dei profitti" loading="lazy" width="1400" height="1750">
+        </div>
+      </div>
+      <div>
+        <p class="article__meta"><span>Fashion</span><span>Partner</span></p>
+        <h2 class="display-m">Esemplare × Bella Esperanza</h2>
+        <p class="lede">100% of profits supporting our mission.</p>
+        <p>Esemplare, a brand devoted to sustainability and ethical innovation, donates 100% of its profits to support Bella Esperanza’s mission. This partnership unites ethical fashion with impactful social change, combining creativity and purpose.</p>
+        <p>The collaboration goes beyond donations: it includes special projects, ambassador and influencer activations, and workshops. Together we are creating opportunities rooted in shared values — sustainability, education and community building.</p>
+      </div>
+    </article>
+
+    <!-- Mark Giusti -->
+    <article class="article" id="giusti" data-reveal>
+      <div class="article__media">
+        <div class="frame ratio-3-2 frame--hover frame--tint" style="--tint:linear-gradient(150deg,rgba(0,206,180,.26),rgba(107,105,176,.22))">
+          <img src="../assets/img/mag-giusti.jpg" alt="Evento Mark Giusti a sostegno di Bella Esperanza" loading="lazy" width="1400" height="1586">
+        </div>
+      </div>
+      <div>
+        <p class="article__meta"><span>Design</span><span>Partner</span></p>
+        <h2 class="display-m">Mark Giusti × Bella Esperanza</h2>
+        <p class="lede">Where luxury design meets humanitarian causes.</p>
+        <p>Mark Giusti, renowned for combining craftsmanship, sustainability and mosaic art, partners with Bella Esperanza to strengthen the organisation’s mission. Together we have launched a series of meaningful initiatives, including fundraising events and awareness campaigns.</p>
+        <p>This partnership underlines a shared commitment to creating opportunities for underserved communities, while celebrating the art and ethical values at the heart of the brand.</p>
+      </div>
+    </article>
+
+    <!-- Island -->
+    <article class="article" id="island" data-reveal>
+      <div class="article__media">
+        <div class="frame ratio-3-2 frame--hover frame--tint" style="--tint:linear-gradient(150deg,rgba(240,76,113,.28),rgba(254,204,78,.22))">
+          <img src="../assets/img/mag-island.jpg" alt="The Island Experience Festival, boat party" loading="lazy" width="1120" height="1400">
+        </div>
+      </div>
+      <div>
+        <p class="article__meta"><span>Musica</span><span>Charity partner</span></p>
+        <h2 class="display-m">The Island Experience Festival × BE</h2>
+        <p class="lede">A celebration of creativity and connection.</p>
+        <p>The Island Experience Festival brings extraordinary creative minds together for an unforgettable journey. With a blend of electronic music, restorative yoga sessions, boat parties and much more, the festival is a vibrant showcase of art, music and community.</p>
+        <p>We were proud to be charity partner of this event, joining forces to turn shared experiences into meaningful impact.</p>
+      </div>
+    </article>
+
+    <!-- Kult -->
+    <article class="article" id="kult" data-reveal>
+      <div class="article__media">
+        <div class="frame ratio-3-2 frame--hover frame--tint" style="--tint:linear-gradient(150deg,rgba(233,21,88,.26),rgba(107,105,176,.22))">
+          <img src="../assets/img/mag-kult.jpg" alt="Bella Esperanza sul palco di Women in the Industry, Milan Music Week" loading="lazy" width="1200" height="1600">
+        </div>
+      </div>
+      <div>
+        <p class="article__meta"><span>Musica</span><span>Milan Music Week</span></p>
+        <h2 class="display-m">Kult × Bella Esperanza</h2>
+        <p class="lede">Women in the Industry, at Milan’s iconic Apollo Club.</p>
+        <p>Bella Esperanza was proud to be charity partner of Women in the Industry, an empowerment event organised by Kult Magazine during Milan Music Week.</p>
+        <p>This gathering celebrated the achievements of women shaping the music industry while fostering dialogue on inclusion, creativity and innovation. Together with Kult Magazine we joined forces to amplify voices, spark change and support a more inclusive future.</p>
+      </div>
+    </article>
+
+    <!-- JR Studio -->
+    <article class="article" id="jrstudio" data-reveal>
+      <div class="article__media">
+        <div class="frame ratio-3-2 frame--hover frame--tint" style="--tint:linear-gradient(150deg,rgba(114,197,148,.26),rgba(0,206,180,.22))">
+          <img src="../assets/img/mag-jr.jpg" alt="Jeoffrey Romano, CEO di JR Studio" loading="lazy" width="1400" height="2100">
+        </div>
+      </div>
+      <div>
+        <p class="article__meta"><span>Arte</span><span>Partner</span></p>
+        <h2 class="display-m">JR Studio × Bella Esperanza</h2>
+        <p class="lede">Positive impact through art and community projects.</p>
+        <p>We are excited about our collaboration with JR Studio and its visionary CEO, Jeoffrey Romano. Known for its cutting-edge approach, JR Studio fully shares Bella Esperanza’s mission of generating positive impact through art and community projects.</p>
+        <p>Together we will create dynamic experiences that amplify our cause and bring our vision to life.</p>
+      </div>
+    </article>
+
+  </div>
+</section>
+
+<!-- =============================================================== CTA -->
+<section class="section section--tight">
+  <div class="wrap">
+    <div class="cta-band grain" data-reveal>
+      <div class="cta-band__bg"><img src="../assets/img/mag-dj.jpg" alt="" loading="lazy" width="1400" height="933"></div>
+      <p class="eyebrow">Co-creation</p>
+      <h2 class="display-l">The next project could be yours.</h2>
+      <p class="lede">We work with brands and companies to create tailor-made projects aligned with your goals and values — for you, or with you, on our next trip to Tanzania.</p>
+      <div class="btn-row" style="margin-top:var(--s-6)">
+        <a class="btn btn--accent btn--lg" href="mailto:info@bellaesperanza.org?subject=Co-Create%20con%20Bella%20Esperanza">
+          <span>Get in touch</span>
+          <svg class="arw" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <a class="btn btn--ghost btn--lg" href="dona.html">Donate now</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <a class="brand" href="index.html" aria-label="Bella Esperanza — home">
+          <img src="../assets/img/logo-white.svg" alt="Bella Esperanza" width="132" height="50">
+        </a>
+        <p style="max-width:34ch">Creativity for education and social change. A non-profit organisation (ODV) based in Laives, South Tyrol.</p>
+        <div class="socials" style="margin-top:var(--s-5)">
+          <a href="https://www.instagram.com/bellaesperanzacharity/" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" stroke="currentColor" stroke-width="1.7"/><circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="1.7"/><circle cx="17.4" cy="6.6" r="1.1" fill="currentColor"/></svg></a>
+          <a href="https://www.linkedin.com/company/bella-esperanza-odv/about/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5.5 9v10M5.5 5.6v.02M10 19V9m0 4c0-2.2 1.4-3.6 3.4-3.6S17 10.8 17 13v6" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/></svg></a>
+          <a href="https://www.facebook.com/bellaesperanzacharity" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M14.5 21v-8h2.7l.4-3h-3.1V8.2c0-.9.3-1.5 1.6-1.5H17.7V4a22 22 0 0 0-2.5-.1c-2.5 0-4.2 1.5-4.2 4.3V10H8.3v3H11v8h3.5Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg></a>
+        </div>
+      </div>
+      <div>
+        <h4>Explore</h4>
+        <ul>
+          <li><a href="index.html#storia">Our story</a></li>
+          <li><a href="index.html#progetto">The project</a></li>
+          <li><a href="index.html#creativita">Creativity</a></li>
+          <li><a href="index.html#metodo">How we work</a></li>
+          <li><a href="index.html#community">Community</a></li>
+          <li><a href="magazine.html">Magazine</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Get involved</h4>
+        <ul>
+          <li><a href="dona.html">Donate now</a></li>
+          <li><a href="dona.html#cinquepermille">5×1000</a></li>
+          <li><a href="index.html#supporto">Support us</a></li>
+          <li><a href="index.html#cocreate">Co-creation</a></li>
+          <li><a href="mailto:info@bellaesperanza.org">Become a volunteer</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="mailto:info@bellaesperanza.org">info@bellaesperanza.org</a></li>
+          <li>Via Nazario Sauro 14/A<br>39055 Laives (BZ), Italia</li>
+        </ul>
+        <h4 style="margin-top:var(--s-6)">School account</h4>
+        <ul>
+          <li style="font-family:ui-monospace,Menlo,monospace;font-size:.82rem;word-break:break-all">IT50 S081 1458 4800 0030 0271 209</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-legal">
+      <p style="margin:0">© <span data-year>2026</span> Bella Esperanza ODV · C.F. 94155370219 · <span>All rights reserved</span></p>
+      <nav aria-label="Legale">
+        <a href="https://www.bellaesperanza.org/it/privacy-policy-2/">Privacy Policy</a>
+        <a href="https://www.bellaesperanza.org/cookie-policy">Cookie Policy</a>
+        <a href="https://www.bellaesperanza.org/credits">Credits</a>
+      </nav>
+    </div>
+  </div>
+</footer>
+
+<script src="../assets/js/main.js"></script>
+</body>
+</html>

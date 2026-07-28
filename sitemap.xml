@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>https://www.bellaesperanza.org/</loc>
+    <xhtml:link rel="alternate" hreflang="it" href="https://www.bellaesperanza.org/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.bellaesperanza.org/en/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.bellaesperanza.org/"/>
+  </url>
+  <url>
+    <loc>https://www.bellaesperanza.org/en/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.bellaesperanza.org/en/"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://www.bellaesperanza.org/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.bellaesperanza.org/"/>
+  </url>
+  <url>
+    <loc>https://www.bellaesperanza.org/dona.html</loc>
+    <xhtml:link rel="alternate" hreflang="it" href="https://www.bellaesperanza.org/dona.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.bellaesperanza.org/en/dona.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.bellaesperanza.org/dona.html"/>
+  </url>
+  <url>
+    <loc>https://www.bellaesperanza.org/en/dona.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.bellaesperanza.org/en/dona.html"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://www.bellaesperanza.org/dona.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.bellaesperanza.org/dona.html"/>
+  </url>
+  <url>
+    <loc>https://www.bellaesperanza.org/magazine.html</loc>
+    <xhtml:link rel="alternate" hreflang="it" href="https://www.bellaesperanza.org/magazine.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.bellaesperanza.org/en/magazine.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.bellaesperanza.org/magazine.html"/>
+  </url>
+  <url>
+    <loc>https://www.bellaesperanza.org/en/magazine.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.bellaesperanza.org/en/magazine.html"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://www.bellaesperanza.org/magazine.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.bellaesperanza.org/magazine.html"/>
+  </url>
+</urlset>

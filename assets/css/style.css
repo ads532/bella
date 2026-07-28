@@ -433,20 +433,25 @@ strong, b { font-weight: 650; }
   backdrop-filter: blur(6px);
 }
 .is-stuck .lang { background: rgba(20, 19, 18, .07); }
-.lang button {
-  border: 0; background: transparent; cursor: pointer;
+/* Der Umschalter besteht aus echten Links: die aktive Sprache ist ein
+   <span>, die andere ein <a> auf die entsprechende URL. */
+.lang a,
+.lang span {
+  display: block;
   font-family: "Inter", sans-serif;
   font-size: .74rem; font-weight: 700; letter-spacing: .08em;
   color: rgba(255, 255, 255, .72);
   padding: .35em .7em;
   border-radius: var(--r-pill);
+  text-decoration: none;
   transition: background-color var(--t-fast) var(--ease-out), color var(--t-fast) var(--ease-out);
 }
-.is-stuck .lang button { color: var(--mute); }
-.lang button:hover { color: var(--white); }
-.is-stuck .lang button:hover { color: var(--ink); }
-.lang button[aria-pressed="true"] { background: var(--yellow); color: var(--ink); }
-.is-stuck .lang button[aria-pressed="true"] { background: var(--yellow); color: var(--ink); }
+.is-stuck .lang a,
+.is-stuck .lang span { color: var(--mute); }
+.lang a:hover { color: var(--white); background: rgba(255, 255, 255, .16); }
+.is-stuck .lang a:hover { color: var(--ink); background: rgba(20, 19, 18, .08); }
+.lang [aria-current="true"] { background: var(--yellow); color: var(--ink); }
+.is-stuck .lang [aria-current="true"] { background: var(--yellow); color: var(--ink); }
 
 .nav-cta { padding: .7em 1.25em; font-size: .85rem; }
 

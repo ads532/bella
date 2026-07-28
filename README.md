@@ -26,16 +26,24 @@ einen echten HTTP-Server.
 ## Struktur
 
 ```
-index.html          One-Pager mit allen Kerninhalten
-dona.html           Spenden (Donorbox, IBAN, 5×1000, Wirkung)
-magazine.html       BE Magazine — alle 6 Kooperationen
-serve.mjs           optionaler Dev-Server (Node)
+index.html          One-Pager mit allen Kerninhalten      ← bearbeiten
+dona.html           Spenden (Donorbox, IBAN, 5×1000)      ← bearbeiten
+magazine.html       BE Magazine — alle 6 Kooperationen    ← bearbeiten
+i18n/en.json        alle englischen Texte                 ← bearbeiten
+build.py            erzeugt daraus die englische Fassung
+
+en/                 erzeugt — nicht von Hand ändern
+  index.html  dona.html  magazine.html
+sitemap.xml         erzeugt
+
 assets/
   css/style.css     komplettes Design-System (Tokens, Komponenten)
   js/main.js        Header, Menü, Scroll-Reveal, Zähler, IBAN kopieren
-  js/i18n.js        englische Übersetzungen (Italienisch steht im HTML)
   img/              alle verwendeten Bilder
   img/_pool/        weitere Fotos aus dem Archiv der alten Seite (ungenutzt)
+
+serve.mjs           optionaler Dev-Server (Node)
+.github/workflows/  baut en/ bei jedem Push automatisch neu
 ```
 
 ---
@@ -66,25 +74,57 @@ die konkrete Lösung (die Schule), dann der Beweis für Vertrauen (zwei Konten,
 
 ## Zweisprachigkeit (IT / EN)
 
-Italienisch steht direkt im HTML — die Seite ist also auch ohne JavaScript
-vollständig lesbar und für Suchmaschinen indexierbar. `assets/js/i18n.js` enthält
-ausschließlich die englischen Texte; der IT/EN-Schalter tauscht sie ein und die
-Auswahl bleibt im `localStorage` gespeichert.
+Jede Sprache hat eigene, echte URLs — kein JavaScript-Umschalten:
 
-- **Italienischen Text ändern:** direkt im HTML.
-- **Englischen Text ändern:** in `assets/js/i18n.js` beim passenden Schlüssel.
-- Verbunden werden beide über `data-i18n="schlüssel"`.
-- `?lang=en` erzeugt einen teilbaren englischen Link.
+| | Italienisch | Englisch |
+|---|---|---|
+| Startseite | `/` | `/en/` |
+| Spenden | `/dona.html` | `/en/dona.html` |
+| Magazine | `/magazine.html` | `/en/magazine.html` |
 
-Neuen Text zweisprachig anlegen:
+Beide Fassungen sind vollwertige HTML-Seiten mit eigenem `<title>`, eigener
+Meta-Description, eigenem `canonical` und wechselseitigen `hreflang`-Angaben.
+Damit lassen sich englischsprachige **Google-Ads-Kampagnen direkt auf die
+englischen URLs** schalten, und Google kann beide Sprachen getrennt indexieren.
+
+### Wie das zusammenhängt
+
+Italienisch ist die einzige Quelle. Die englischen Seiten werden daraus erzeugt:
+
+```
+index.html  +  i18n/en.json   ──build.py──▶   en/index.html
+```
+
+Verknüpft wird über Schlüssel im HTML:
 
 ```html
-<p data-i18n="school.newLine">Testo italiano</p>
+<p data-i18n="story.p1">Testo italiano</p>
 ```
 
-```js
-'school.newLine': 'English text',
+```json
+"story.p1": "English text"
 ```
+
+### Text ändern
+
+- **Italienisch** → direkt in `index.html` / `dona.html` / `magazine.html`
+- **Englisch** → in `i18n/en.json` beim passenden Schlüssel
+- **Neuen Absatz anlegen** → im HTML mit `data-i18n="neuer.schlüssel"` auszeichnen
+  und denselben Schlüssel in `i18n/en.json` ergänzen
+
+Danach:
+
+```bash
+python3 build.py
+```
+
+Das Skript meldet jeden Schlüssel, für den eine Übersetzung fehlt, und schreibt
+`en/` sowie `sitemap.xml` neu. **Wer es vergisst, dem passiert nichts:** Bei
+jedem Push nach GitHub läuft derselbe Build automatisch als Action und schiebt
+das Ergebnis nach.
+
+Neben `data-i18n` (Inhalt) gibt es noch `data-i18n-content` (für Meta-Tags),
+`data-i18n-placeholder`, `data-i18n-idle` und `data-i18n-done` (Kopier-Buttons).
 
 ---
 
