@@ -143,7 +143,7 @@
   "trans.bank": "Bank",
   "friends.eyebrow": "BEvolution",
   "friends.title": "A global community of good souls.",
-  "friends.lede": "Artists and changemakers from art, fashion, music and sport support us in making charity creative — and part of our lifestyle.",
+  "friends.lede": "Welcome to our BE Friends community. Together we are building a global movement that inspires change, empowers the next generation and creates opportunities for those in need.",
   "friends.q1": "As an African I know how hard it is to access education, especially in some parts of Africa. Not everyone is privileged enough to receive an education. BE is creating awareness and opportunities for young people’s futures. I feel privileged to be part of this organisation.",
   "friends.r1": "Activist &amp; actor · Rome, Italy",
   "friends.q2": "Being based in Tanzania, where BE operates, I am very proud to support and locally supervise its first pilot project. For me education is crucial for the future of Africa. BE directly reaches a society that had lost hope.",
@@ -296,5 +296,6 @@
   "footer.consent": "Privacy settings",
   "partners.support": "Supporters, artists and companies who make our work possible.",
   "team.crewTitle": "Volunteers",
-  "team.crewLede": "The people who give their time, skills and heart."
+  "team.crewLede": "The people who give their time, skills and heart.",
+  "friends.lede2": "Artists and changemakers from art, fashion, music and sport support us in making charity creative — and part of our lifestyle."
 }
