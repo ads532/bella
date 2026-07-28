@@ -1,0 +1,17 @@
+# macOS
+.DS_Store
+._*
+
+# Deploy-Paket (wird bei Bedarf neu erzeugt)
+bella-esperanza-website.zip
+
+# Interne Arbeitsdateien, gehören nicht in ein öffentliches Repo
+CLAUDE*.md
+
+# Bildarchiv: ungenutzte Fotos aus der alten Mediathek.
+# Bleiben lokal liegen, werden bewusst NICHT veröffentlicht
+# (u. a. Aufnahmen von Kindern ohne Verwendungszweck auf der Seite).
+assets/img/_pool/
+
+# Versehentlicher Zweit-Klon desselben Repos, kann gelöscht werden
+/bella

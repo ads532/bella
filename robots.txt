@@ -1,0 +1,11 @@
+# Vorschau-Modus: Suchmaschinen sollen die Preview-URL NICHT indexieren,
+# solange www.bellaesperanza.org noch die alte Seite ausliefert.
+# Sonst entsteht doppelter Inhalt und die echte Domain verliert Sichtbarkeit.
+#
+# ---> Beim echten Livegang auf der eigenen Domain diese zwei Zeilen
+#      durch "Disallow:" (leer) ersetzen und die Sitemap-Zeile eintragen.
+
+User-agent: *
+Disallow: /
+
+# Sitemap: https://www.bellaesperanza.org/sitemap.xml
