@@ -15,6 +15,14 @@
   'use strict';
 
   var EN = {
+    /* --- page titles & meta descriptions (browser tab, Google Ads) ------ */
+    'meta.homeTitle': 'Bella Esperanza | BE — Creativity for education and social change',
+    'meta.homeDesc': 'Bella Esperanza | BE is an Italian non-profit bringing education to children by building schools and securing access to creativity. Our first project: a school in Ugwachanya, Tanzania, for 360 children by 2027.',
+    'meta.donaTitle': 'Donate now — Bella Esperanza | BE',
+    'meta.donaDesc': '100% of your online donation funds the construction of our school in Ugwachanya, Tanzania. Give online, by bank transfer, or through the Italian 5×1000.',
+    'meta.magTitle': 'BE Magazine — Bella Esperanza | BE',
+    'meta.magDesc': 'Bella Esperanza’s collaborations with JR Studio, The Island Experience Festival, Mark Giusti, Esemplare, ON and Kult Magazine. Art, fashion, music and sport in the service of education.',
+
     /* --- generic UI ---------------------------------------------------- */
     'a11y.skip': 'Skip to content',
     'ui.copyIban': 'Copy IBAN',
@@ -349,6 +357,7 @@
 
   /* Which HTML attribute each `data-i18n-*` suffix writes to. */
   var ATTR_TARGETS = {
+    content:     { type: 'attr',    name: 'content'     },
     placeholder: { type: 'attr',    name: 'placeholder' },
     aria:        { type: 'attr',    name: 'aria-label'  },
     title:       { type: 'attr',    name: 'title'       },
@@ -369,8 +378,62 @@
     });
   }
 
-  function applyLang(lang) {
+  /* -- URL ---------------------------------------------------------------
+     Italian is the default and keeps the clean URL; English is marked with
+     ?lang=en. That gives a stable, shareable address per language — the one
+     you point Google Ads at. `mode` is 'push' (new history entry, for a
+     click), 'replace' (silent correction on load) or 'none'. */
+  function syncUrl(lang, mode) {
+    if (mode === 'none' || !window.history || !history.replaceState) return;
+    var url;
+    try { url = new URL(location.href); } catch (e) { return; }
+    if (lang === 'it') url.searchParams.delete('lang');
+    else url.searchParams.set('lang', lang);
+    var next = url.pathname + url.search + url.hash;
+    if (next === location.pathname + location.search + location.hash) return;
+    if (mode === 'push') history.pushState({ lang: lang }, '', next);
+    else history.replaceState({ lang: lang }, '', next);
+  }
+
+  /* Carry the language across internal page links, so a visitor who lands on
+     an English ad and clicks through stays in English — even without cookies
+     or localStorage. Same-page anchors are left untouched. */
+  function localizeLinks(lang) {
+    document.querySelectorAll('a[href]').forEach(function (a) {
+      var href = a.getAttribute('href');
+      if (!href) return;
+      if (href.charAt(0) === '#') return;
+      if (/^([a-z][a-z0-9+.-]*:|\/\/)/i.test(href)) return;   // external, mailto, tel
+
+      var hash = '';
+      var h = href.indexOf('#');
+      if (h > -1) { hash = href.slice(h); href = href.slice(0, h); }
+      var q = href.indexOf('?');
+      if (q > -1) href = href.slice(0, q);
+
+      a.setAttribute('href', href + (lang === 'it' ? '' : '?lang=' + lang) + hash);
+    });
+  }
+
+  /* Point the canonical + og:url at the address of the language on screen. */
+  function syncMeta(lang) {
+    var canonical = document.querySelector('link[rel="canonical"]');
+    if (!canonical) return;
+    var base = canonical.dataset.base || canonical.getAttribute('href');
+    canonical.dataset.base = base;
+    var href = lang === 'it' ? base : base + (base.indexOf('?') > -1 ? '&' : '?') + 'lang=' + lang;
+    canonical.setAttribute('href', href);
+    var og = document.querySelector('meta[property="og:url"]');
+    if (og) og.setAttribute('content', href);
+    var ogLocale = document.querySelector('meta[property="og:locale"]');
+    if (ogLocale) ogLocale.setAttribute('content', lang === 'it' ? 'it_IT' : 'en_GB');
+  }
+
+  var current = 'it';
+
+  function applyLang(lang, urlMode) {
     var toEnglish = lang === 'en';
+    if (lang === current) { syncUrl(lang, urlMode); localizeLinks(lang); syncMeta(lang); return; }
 
     document.querySelectorAll('[data-i18n], [data-i18n-placeholder], [data-i18n-aria], [data-i18n-title], [data-i18n-idle], [data-i18n-done], [data-i18n-success]')
       .forEach(function (el) {
@@ -405,10 +468,15 @@
       }
     });
 
+    current = lang;
     document.documentElement.lang = lang;
     document.querySelectorAll('[data-lang]').forEach(function (btn) {
       btn.setAttribute('aria-pressed', String(btn.dataset.lang === lang));
     });
+
+    syncUrl(lang, urlMode);
+    localizeLinks(lang);
+    syncMeta(lang);
 
     try { localStorage.setItem(STORAGE_KEY, lang); } catch (e) {}
   }
@@ -426,12 +494,19 @@
     return 'it';
   }
 
-  var start = initialLang();
-  if (start !== 'it') applyLang(start);
+  /* On load the URL is corrected silently, so the address bar always shows
+     the language actually on screen (also when it came from localStorage). */
+  applyLang(initialLang(), 'replace');
 
   document.addEventListener('click', function (e) {
     var btn = e.target.closest('[data-lang]');
-    if (!btn) return;
-    applyLang(btn.dataset.lang);
+    if (!btn || btn.dataset.lang === current) return;
+    applyLang(btn.dataset.lang, 'push');
+  });
+
+  /* Browser back / forward switches the language back too. */
+  window.addEventListener('popstate', function () {
+    var fromUrl = new URLSearchParams(location.search).get('lang');
+    applyLang(fromUrl === 'en' ? 'en' : 'it', 'none');
   });
 })();
