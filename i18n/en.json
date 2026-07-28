@@ -294,5 +294,7 @@
   "consent.accept": "Accept all",
   "consent.reject": "Necessary only",
   "footer.consent": "Privacy settings",
-  "partners.support": "Supporters, artists and companies who make our work possible."
+  "partners.support": "Supporters, artists and companies who make our work possible.",
+  "team.crewTitle": "Volunteers",
+  "team.crewLede": "The people who give their time, skills and heart."
 }

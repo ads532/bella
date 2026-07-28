@@ -21,6 +21,16 @@
 
 <link rel="preload" href="assets/fonts/poppins-800-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/fonts/inter-var-latin.woff2" as="font" type="font/woff2" crossorigin>
+<script>
+/* Farbwelt aus der URL lesen (?theme=yellow). Steht bewusst inline im Kopf,
+   damit die Seite nicht kurz im falschen Set aufblitzt. */
+(function () {
+  try {
+    var t = new URLSearchParams(location.search).get('theme');
+    if (t === 'yellow' || t === 'green') document.documentElement.dataset.theme = t;
+  } catch (e) {}
+})();
+</script>
 <link rel="stylesheet" href="assets/css/style.css">
 
 <style>
@@ -42,7 +52,7 @@
   .article__meta {
     display: flex; flex-wrap: wrap; gap: var(--s-3);
     font-size: .72rem; letter-spacing: .14em; text-transform: uppercase;
-    font-weight: 700; color: var(--orange);
+    font-weight: 700; color: var(--clay);
     margin-bottom: var(--s-4);
   }
   .article__meta span:not(:first-child)::before { content: "· "; opacity: .5; }
@@ -111,7 +121,7 @@
     <!-- ON -->
     <article class="article" id="on" data-reveal>
       <div class="article__media">
-        <div class="frame ratio-4-5 frame--hover frame--tint" style="--focus:50% 18%;--tint:linear-gradient(150deg,rgba(254,204,78,.28),rgba(243,121,50,.22))">
+        <div class="frame ratio-4-5 frame--hover frame--tint" style="--focus:50% 18%;--tint:var(--tint-4)">
           <img src="assets/img/mag-on.jpg" alt="Milan Relay Marathon insieme a ON" loading="lazy" width="1200" height="1800">
         </div>
       </div>
@@ -132,7 +142,7 @@
     <!-- Esemplare -->
     <article class="article" id="esemplare" data-reveal>
       <div class="article__media">
-        <div class="frame ratio-4-5 frame--hover frame--tint" style="--focus:50% 26%;--tint:linear-gradient(150deg,rgba(107,105,176,.28),rgba(240,76,113,.22))">
+        <div class="frame ratio-4-5 frame--hover frame--tint" style="--focus:50% 26%;--tint:var(--tint-5)">
           <img src="assets/img/mag-esemplare.jpg" alt="Capi Esemplare, il brand che dona il 100% dei profitti" loading="lazy" width="1128" height="1400">
         </div>
       </div>
@@ -148,7 +158,7 @@
     <!-- Mark Giusti -->
     <article class="article" id="giusti" data-reveal>
       <div class="article__media">
-        <div class="frame ratio-4-5 frame--hover frame--tint" style="--focus:50% 34%;--tint:linear-gradient(150deg,rgba(0,206,180,.26),rgba(107,105,176,.22))">
+        <div class="frame ratio-4-5 frame--hover frame--tint" style="--focus:50% 34%;--tint:var(--tint-6)">
           <img src="assets/img/mag-giusti.jpg" alt="Evento Mark Giusti a sostegno di Bella Esperanza" loading="lazy" width="1235" height="1400">
         </div>
       </div>
@@ -164,7 +174,7 @@
     <!-- Island -->
     <article class="article" id="island" data-reveal>
       <div class="article__media">
-        <div class="frame ratio-4-5 frame--hover frame--tint" style="--focus:50% 42%;--tint:linear-gradient(150deg,rgba(240,76,113,.28),rgba(254,204,78,.22))">
+        <div class="frame ratio-4-5 frame--hover frame--tint" style="--focus:50% 42%;--tint:var(--tint-7)">
           <img src="assets/img/mag-island.jpg" alt="The Island Experience Festival, boat party" loading="lazy" width="1400" height="1373">
         </div>
       </div>
@@ -180,7 +190,7 @@
     <!-- Kult -->
     <article class="article" id="kult" data-reveal>
       <div class="article__media">
-        <div class="frame ratio-4-5 frame--hover frame--tint" style="--focus:50% 28%;--tint:linear-gradient(150deg,rgba(233,21,88,.26),rgba(107,105,176,.22))">
+        <div class="frame ratio-4-5 frame--hover frame--tint" style="--focus:50% 28%;--tint:var(--tint-8)">
           <img src="assets/img/mag-kult.jpg" alt="Bella Esperanza sul palco di Women in the Industry, Milan Music Week" loading="lazy" width="1200" height="1800">
         </div>
       </div>
@@ -196,7 +206,7 @@
     <!-- JR Studio -->
     <article class="article" id="jrstudio" data-reveal>
       <div class="article__media">
-        <div class="frame ratio-4-5 frame--hover frame--tint" style="--focus:50% 16%;--tint:linear-gradient(150deg,rgba(114,197,148,.26),rgba(0,206,180,.22))">
+        <div class="frame ratio-4-5 frame--hover frame--tint" style="--focus:50% 16%;--tint:var(--tint-9)">
           <img src="assets/img/mag-jr.jpg" alt="Jeoffrey Romano, CEO di JR Studio" loading="lazy" width="932" height="1400">
         </div>
       </div>

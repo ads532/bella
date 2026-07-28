@@ -21,6 +21,16 @@
 
 <link rel="preload" href="assets/fonts/poppins-800-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/fonts/inter-var-latin.woff2" as="font" type="font/woff2" crossorigin>
+<script>
+/* Farbwelt aus der URL lesen (?theme=yellow). Steht bewusst inline im Kopf,
+   damit die Seite nicht kurz im falschen Set aufblitzt. */
+(function () {
+  try {
+    var t = new URLSearchParams(location.search).get('theme');
+    if (t === 'yellow' || t === 'green') document.documentElement.dataset.theme = t;
+  } catch (e) {}
+})();
+</script>
 <link rel="stylesheet" href="assets/css/style.css">
 </head>
 
@@ -102,15 +112,15 @@
       </div>
 
       <div class="grid" data-reveal style="gap:var(--s-4);--d:120ms">
-        <article class="card" style="--card-accent:var(--yellow)">
+        <article class="card" style="--card-accent:var(--accent)">
           <h3 data-i18n="donate.i1t">25 €</h3>
           <p data-i18n="donate.i1p">Materiale scolastico e artistico per una classe durante un workshop.</p>
         </article>
-        <article class="card" style="--card-accent:var(--orange)">
+        <article class="card" style="--card-accent:var(--clay)">
           <h3 data-i18n="donate.i2t">75 €</h3>
           <p data-i18n="donate.i2p">Arredi e attrezzature per una postazione di studio nella nuova scuola.</p>
         </article>
-        <article class="card" style="--card-accent:var(--pink)">
+        <article class="card" style="--card-accent:var(--accent-soft)">
           <h3 data-i18n="donate.i3t">250 €</h3>
           <p data-i18n="donate.i3p">Un contributo concreto alla costruzione di una delle 10 aule.</p>
         </article>
@@ -134,17 +144,17 @@
     <div class="stat-row" style="margin-bottom:clamp(2.5rem,5vw,4rem)">
       <div class="stat" data-reveal>
         <p class="stat__pre" data-i18n="donate.k1pre">Entro il 2027</p>
-        <span class="stat__val" data-count="360" style="--stat-color:var(--yellow)">360</span>
+        <span class="stat__val" data-count="360" style="--stat-color:var(--accent)">360</span>
         <p class="stat__post" data-i18n="donate.k1post">bambini e bambine avranno accesso all'istruzione.</p>
       </div>
       <div class="stat" data-reveal style="--d:120ms">
         <p class="stat__pre" data-i18n="donate.k2pre">Della tua donazione online</p>
-        <span class="stat__val" data-count="100" data-suffix="%" style="--stat-color:var(--green)">100%</span>
+        <span class="stat__val" data-count="100" data-suffix="%" style="--stat-color:var(--accent)">100%</span>
         <p class="stat__post" data-i18n="donate.k2post">finanzia il progetto scolastico, mai i costi operativi.</p>
       </div>
       <div class="stat" data-reveal style="--d:240ms">
         <p class="stat__pre" data-i18n="donate.k3pre">Un campus con</p>
-        <span class="stat__val" data-count="10" style="--stat-color:var(--pink)">10</span>
+        <span class="stat__val" data-count="10" style="--stat-color:var(--accent-soft)">10</span>
         <p class="stat__post" data-i18n="donate.k3post">aule, due dormitori, biblioteca, mensa e campo sportivo.</p>
       </div>
     </div>
@@ -177,8 +187,8 @@
     </div>
 
     <div class="grid grid--2">
-      <div class="acct" data-reveal style="--acct-accent:var(--yellow)">
-        <span class="acct__tag" style="--acct-accent:var(--yellow)" data-i18n="trans.tag1">Conto 1 · Costruzione scuola</span>
+      <div class="acct" data-reveal style="--acct-accent:var(--accent)">
+        <span class="acct__tag" style="--acct-accent:var(--accent)" data-i18n="trans.tag1">Conto 1 · Costruzione scuola</span>
         <h3>Bella Esperanza ODV</h3>
         <dl>
           <div><dt data-i18n="trans.bank">Banca</dt><dd>Cassa Raiffeisen Bassa Atesina</dd></div>
@@ -191,8 +201,8 @@
         </button>
       </div>
 
-      <div class="acct" data-reveal style="--d:120ms;--acct-accent:var(--purple)">
-        <span class="acct__tag" style="--acct-accent:var(--purple)" data-i18n="trans.tag2">Conto 2 · Costi operativi</span>
+      <div class="acct" data-reveal style="--d:120ms;--acct-accent:var(--accent-d)">
+        <span class="acct__tag" style="--acct-accent:var(--accent-d)" data-i18n="trans.tag2">Conto 2 · Costi operativi</span>
         <h3>Bella Esperanza ODV</h3>
         <dl>
           <div><dt data-i18n="trans.bank">Banca</dt><dd>Cassa Raiffeisen Bassa Atesina</dd></div>
@@ -217,8 +227,8 @@
         <h2 class="display-l" data-i18n="fivex.title">Un gesto concreto che non ti costa nulla.</h2>
         <p class="lede" data-i18n="fivex.lede">Nella tua dichiarazione dei redditi, firma nel riquadro dedicato alle organizzazioni di volontariato e indica il codice fiscale di Bella Esperanza ODV.</p>
 
-        <div class="acct" style="--acct-accent:var(--green);margin-top:var(--s-6);max-width:440px">
-          <span class="acct__tag" style="--acct-accent:var(--green)" data-i18n="fivex.tag">Codice fiscale</span>
+        <div class="acct" style="--acct-accent:var(--accent);margin-top:var(--s-6);max-width:440px">
+          <span class="acct__tag" style="--acct-accent:var(--accent)" data-i18n="fivex.tag">Codice fiscale</span>
           <dl>
             <div><dt data-i18n="fivex.cf">Bella Esperanza ODV</dt><dd style="font-size:1.35rem;letter-spacing:.06em">94155370219</dd></div>
           </dl>
@@ -248,15 +258,15 @@
     </div>
 
     <div class="grid grid--3">
-      <article class="card" data-reveal style="--card-accent:var(--yellow)">
+      <article class="card" data-reveal style="--card-accent:var(--accent)">
         <h3 data-i18n="donate.o1t">Co-creazione con il tuo brand</h3>
         <p data-i18n="donate.o1p">Progettiamo insieme un'iniziativa su misura per la tua azienda. Scrivici a info@bellaesperanza.org.</p>
       </article>
-      <article class="card" data-reveal style="--d:110ms;--card-accent:var(--pink)">
+      <article class="card" data-reveal style="--d:110ms;--card-accent:var(--accent-soft)">
         <h3 data-i18n="donate.o2t">Diventa BEfriend</h3>
         <p data-i18n="donate.o2p">Entra nella nostra community globale e porta la missione nella tua rete.</p>
       </article>
-      <article class="card" data-reveal style="--d:220ms;--card-accent:var(--teal)">
+      <article class="card" data-reveal style="--d:220ms;--card-accent:var(--accent-d)">
         <h3 data-i18n="donate.o3t">Fai volontariato</h3>
         <p data-i18n="donate.o3p">Metti a disposizione tempo e competenze, in Italia o in Tanzania.</p>
       </article>

@@ -282,4 +282,35 @@
       if (!banner.hidden) measure();
     }, { passive: true });
   }
+
+  /* --- 12. Farbwelt-Umschalter (nur Vorschau) ------------------------------
+     Zwei abgestimmte Sets stehen zur Auswahl, siehe :root und
+     :root[data-theme="yellow"] in style.css. Der Umschalter erscheint nur,
+     wenn die URL ?preview oder ?theme enthält — auf der späteren Live-Seite
+     bleibt er dadurch unsichtbar, ohne dass etwas entfernt werden muss.
+     ---------------------------------------------------------------------- */
+  (function () {
+    var params = new URLSearchParams(location.search);
+    if (!params.has('preview') && !params.has('theme')) return;
+
+    var active = document.documentElement.dataset.theme === 'yellow' ? 'yellow' : 'green';
+    var box = document.createElement('div');
+    box.className = 'theme-switch';
+    box.innerHTML = '<span class="theme-switch__label">Farbwelt</span>';
+
+    [['green', 'Grün, zurückhaltend'], ['yellow', 'Gelb, lebendig']].forEach(function (pair) {
+      var url = new URL(location.href);
+      url.searchParams.set('theme', pair[0]);
+      url.searchParams.set('preview', '1');
+      var a = document.createElement('a');
+      a.className = 'sw-' + pair[0];
+      a.href = url.pathname + url.search + url.hash;
+      a.title = pair[1];
+      a.setAttribute('aria-label', pair[1]);
+      if (pair[0] === active) a.setAttribute('aria-current', 'true');
+      box.appendChild(a);
+    });
+
+    document.body.appendChild(box);
+  })();
 })();

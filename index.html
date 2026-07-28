@@ -21,6 +21,16 @@
 
 <link rel="preload" href="assets/fonts/poppins-800-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/fonts/inter-var-latin.woff2" as="font" type="font/woff2" crossorigin>
+<script>
+/* Farbwelt aus der URL lesen (?theme=yellow). Steht bewusst inline im Kopf,
+   damit die Seite nicht kurz im falschen Set aufblitzt. */
+(function () {
+  try {
+    var t = new URLSearchParams(location.search).get('theme');
+    if (t === 'yellow' || t === 'green') document.documentElement.dataset.theme = t;
+  } catch (e) {}
+})();
+</script>
 <link rel="stylesheet" href="assets/css/style.css">
 
 <script type="application/ld+json">
@@ -230,17 +240,17 @@
     <div class="stat-row">
       <div class="stat" data-reveal>
         <p class="stat__pre" data-i18n="edu.s1pre">Oggi ci sono</p>
-        <span class="stat__val" data-count="260" style="--stat-color:var(--yellow)">260</span>
+        <span class="stat__val" data-count="260" style="--stat-color:var(--accent)">260</span>
         <p class="stat__post" data-i18n="edu.s1post">milioni di bambini e bambine al mondo che non vanno a scuola.</p>
       </div>
       <div class="stat" data-reveal style="--d:120ms">
         <p class="stat__pre" data-i18n="edu.s2pre">Se non agiamo ora</p>
-        <span class="stat__val" data-count="825" style="--stat-color:var(--orange)">825</span>
+        <span class="stat__val" data-count="825" style="--stat-color:var(--clay)">825</span>
         <p class="stat__post" data-i18n="edu.s2post">milioni di giovani non avranno le competenze necessarie per essere una forza lavoro adeguata nel 2030.</p>
       </div>
       <div class="stat" data-reveal style="--d:240ms">
         <p class="stat__pre" data-i18n="edu.s3pre">Parliamo del</p>
-        <span class="stat__val" data-count="10" data-suffix="%" style="--stat-color:var(--pink)">10%</span>
+        <span class="stat__val" data-count="10" data-suffix="%" style="--stat-color:var(--accent-soft)">10%</span>
         <p class="stat__post" data-i18n="edu.s3post">della popolazione mondiale. 1 su 10 di noi.</p>
       </div>
     </div>
@@ -248,43 +258,43 @@
     <p class="display-m" style="margin-top:clamp(3rem,6vw,5rem);max-width:20ch" data-reveal data-i18n="edu.pull">Le nuove generazioni sono il nostro futuro e i leader di domani. L'istruzione è potere.</p>
 
     <div class="grid grid--4" style="margin-top:clamp(2.5rem,5vw,4rem)">
-      <article class="card" data-reveal style="--card-accent:var(--yellow)">
-        <span class="card__num" style="--card-accent:var(--yellow)">01</span>
+      <article class="card" data-reveal style="--card-accent:var(--accent)">
+        <span class="card__num" style="--card-accent:var(--accent)">01</span>
         <h3 data-i18n="edu.r1t">Guida la crescita economica</h3>
         <p data-i18n="edu.r1p">Sostenere l'apprendimento precoce è il migliore investimento che un governo possa fare: 17 $ di ritorno per ogni 1 $ investito nella prima infanzia.</p>
       </article>
-      <article class="card" data-reveal style="--d:80ms;--card-accent:var(--orange)">
-        <span class="card__num" style="--card-accent:var(--orange)">02</span>
+      <article class="card" data-reveal style="--d:80ms;--card-accent:var(--clay)">
+        <span class="card__num" style="--card-accent:var(--clay)">02</span>
         <h3 data-i18n="edu.r2t">Dà potere alle generazioni future</h3>
         <p data-i18n="edu.r2p">Investire oggi nell'istruzione costruisce le basi per i futuri leader e innovatori, assicurando progresso e resilienza a lungo termine.</p>
       </article>
-      <article class="card" data-reveal style="--d:160ms;--card-accent:var(--pink)">
-        <span class="card__num" style="--card-accent:var(--pink)">03</span>
+      <article class="card" data-reveal style="--d:160ms;--card-accent:var(--accent-soft)">
+        <span class="card__num" style="--card-accent:var(--accent-soft)">03</span>
         <h3 data-i18n="edu.r3t">Cooperazione internazionale</h3>
         <p data-i18n="edu.r3p">L'istruzione favorisce una comprensione più profonda delle questioni globali, delle diverse culture e delle diverse prospettive.</p>
       </article>
-      <article class="card" data-reveal style="--d:240ms;--card-accent:var(--purple)">
-        <span class="card__num" style="--card-accent:var(--purple)">04</span>
+      <article class="card" data-reveal style="--d:240ms;--card-accent:var(--accent-d)">
+        <span class="card__num" style="--card-accent:var(--accent-d)">04</span>
         <h3 data-i18n="edu.r4t">Riduzione di povertà e lavoro minorile</h3>
         <p data-i18n="edu.r4p">Competenze e conoscenze creano opportunità di lavoro migliori, che possono far uscire dalla povertà intere famiglie e comunità.</p>
       </article>
-      <article class="card" data-reveal style="--card-accent:var(--green)">
-        <span class="card__num" style="--card-accent:var(--green)">05</span>
+      <article class="card" data-reveal style="--card-accent:var(--accent)">
+        <span class="card__num" style="--card-accent:var(--accent)">05</span>
         <h3 data-i18n="edu.r5t">Riduzione della migrazione</h3>
         <p data-i18n="edu.r5p">L'istruzione riduce conflitti e migrazione favorendo la comprensione, creando stabilità e offrendo opportunità nella propria comunità.</p>
       </article>
-      <article class="card" data-reveal style="--d:80ms;--card-accent:var(--teal)">
-        <span class="card__num" style="--card-accent:var(--teal)">06</span>
+      <article class="card" data-reveal style="--d:80ms;--card-accent:var(--accent-d)">
+        <span class="card__num" style="--card-accent:var(--accent-d)">06</span>
         <h3 data-i18n="edu.r6t">Miglioramento della salute</h3>
         <p data-i18n="edu.r6p">L'istruzione aumenta la consapevolezza dei problemi legati alla salute, riducendo i tassi di mortalità e migliorando la salute generale.</p>
       </article>
-      <article class="card" data-reveal style="--d:160ms;--card-accent:var(--magenta)">
-        <span class="card__num" style="--card-accent:var(--magenta)">07</span>
+      <article class="card" data-reveal style="--d:160ms;--card-accent:var(--clay)">
+        <span class="card__num" style="--card-accent:var(--clay)">07</span>
         <h3 data-i18n="edu.r7t">Parità di genere</h3>
         <p data-i18n="edu.r7p">L'accesso all'istruzione, in particolare per le ragazze, consente alle donne di partecipare pienamente alla vita economica, sociale e politica.</p>
       </article>
-      <article class="card" data-reveal style="--d:240ms;--card-accent:var(--lime)">
-        <span class="card__num" style="--card-accent:var(--lime)">08</span>
+      <article class="card" data-reveal style="--d:240ms;--card-accent:var(--accent-soft)">
+        <span class="card__num" style="--card-accent:var(--accent-soft)">08</span>
         <h3 data-i18n="edu.r8t">Cambiamento climatico</h3>
         <p data-i18n="edu.r8p">L'educazione crea consapevolezza e competenze per le pratiche sostenibili, affrontando questioni critiche come la conservazione delle risorse.</p>
       </article>
@@ -371,7 +381,7 @@
 
     <blockquote class="serif" style="margin:clamp(3rem,6vw,5rem) 0 0;font-size:clamp(1.5rem,3.6vw,2.8rem);line-height:1.24;max-width:24ch;color:var(--white)" data-reveal>
       <span data-i18n="creative.quote">“Ogni bambino è un artista. Il problema è come rimanere artista una volta cresciuti.”</span>
-      <footer style="font-family:'Inter',sans-serif;font-style:normal;font-size:.82rem;letter-spacing:.14em;text-transform:uppercase;color:var(--yellow);margin-top:1.25rem">Pablo Picasso</footer>
+      <footer style="font-family:'Inter',sans-serif;font-style:normal;font-size:.82rem;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin-top:1.25rem">Pablo Picasso</footer>
     </blockquote>
 
     <p class="lede" style="margin-top:clamp(2rem,4vw,3rem);max-width:52ch" data-reveal data-i18n="creative.p4">Per questo collaboriamo con artisti locali e internazionali e organizziamo corsi e workshop di arte e musica, per rendere l'educazione più colorata, creativa e soprattutto più accessibile.</p>
@@ -453,18 +463,18 @@
     </div>
 
     <div class="grid grid--3">
-      <article class="card" data-reveal style="--card-accent:var(--yellow)">
-        <span class="card__num" style="--card-accent:var(--yellow)">C</span>
+      <article class="card" data-reveal style="--card-accent:var(--accent)">
+        <span class="card__num" style="--card-accent:var(--accent)">C</span>
         <h3 data-i18n="method.c1t">Credibile</h3>
         <p data-i18n="method.c1p">Ci impegniamo per la trasparenza e la fiducia. Ogni centesimo della tua donazione online viene interamente destinato alla costruzione della scuola. Lo garantiamo grazie al nostro sistema a due conti bancari.</p>
       </article>
-      <article class="card" data-reveal style="--d:110ms;--card-accent:var(--green)">
-        <span class="card__num" style="--card-accent:var(--green)">C</span>
+      <article class="card" data-reveal style="--d:110ms;--card-accent:var(--accent)">
+        <span class="card__num" style="--card-accent:var(--accent)">C</span>
         <h3 data-i18n="method.c2t">Collaborativo</h3>
         <p data-i18n="method.c2p">Collaboriamo con esperti locali per costruire il nostro progetto di scuola. I nostri partner hanno anni di esperienza e una conoscenza approfondita di come realizzare progetti scolastici nella loro area.</p>
       </article>
-      <article class="card" data-reveal style="--d:220ms;--card-accent:var(--purple)">
-        <span class="card__num" style="--card-accent:var(--purple)">C</span>
+      <article class="card" data-reveal style="--d:220ms;--card-accent:var(--accent-d)">
+        <span class="card__num" style="--card-accent:var(--accent-d)">C</span>
         <h3 data-i18n="method.c3t">Contemporaneo</h3>
         <p data-i18n="method.c3p">Crediamo nel potere dei brand di ispirare il cambiamento. Per questo stiamo costruendo un brand contemporaneo che trasmetta messaggi di speranza, non di pietà, per la nuova generazione.</p>
       </article>
@@ -475,13 +485,13 @@
       <h3 class="display-m" data-reveal data-i18n="values.title">I nostri valori</h3>
       <p class="lede" style="margin-bottom:var(--s-6)" data-reveal data-i18n="values.lede">Crediamo nel potenziare le comunità attraverso l'innovazione e la creatività, promuovendo la diversità e rimanendo fedeli alla nostra missione.</p>
       <div class="values" data-reveal>
-        <div class="value" style="--v-accent:var(--orange)"><b data-i18n="values.v1t">Collaborazione</b><p data-i18n="values.v1p">Costruiamo partnership con individui, aziende, brand e comunità per ampliare insieme il nostro impatto.</p></div>
-        <div class="value" style="--v-accent:var(--pink)"><b data-i18n="values.v2t">Gentilezza</b><p data-i18n="values.v2p">Crediamo nel potere trasformativo della compassione: ogni persona deve sentirsi valorizzata e ispirata a partecipare.</p></div>
-        <div class="value" style="--v-accent:var(--purple)"><b data-i18n="values.v3t">Inclusione</b><p data-i18n="values.v3p">Garantiamo a tutti l'accesso alle opportunità e facciamo sentire ogni persona accolta nella nostra comunità.</p></div>
-        <div class="value" style="--v-accent:var(--green)"><b data-i18n="values.v4t">Rispetto</b><p data-i18n="values.v4p">Rispettiamo la dignità, i diritti e le voci di ogni bambino e di ogni comunità che serviamo.</p></div>
-        <div class="value" style="--v-accent:var(--teal)"><b data-i18n="values.v5t">Innovazione</b><p data-i18n="values.v5p">Cerchiamo soluzioni creative per affrontare le sfide dell'istruzione e della beneficenza nel mondo moderno.</p></div>
-        <div class="value" style="--v-accent:var(--magenta)"><b data-i18n="values.v6t">Diversità</b><p data-i18n="values.v6p">Valorizziamo le prospettive uniche e celebriamo la diversità come fonte di forza e ispirazione.</p></div>
-        <div class="value" style="--v-accent:var(--yellow-d)"><b data-i18n="values.v7t">Autenticità</b><p data-i18n="values.v7p">Diamo valore all'onestà, alla trasparenza e alla fedeltà alle nostre radici.</p></div>
+        <div class="value" style="--v-accent:var(--clay)"><b data-i18n="values.v1t">Collaborazione</b><p data-i18n="values.v1p">Costruiamo partnership con individui, aziende, brand e comunità per ampliare insieme il nostro impatto.</p></div>
+        <div class="value" style="--v-accent:var(--accent-soft)"><b data-i18n="values.v2t">Gentilezza</b><p data-i18n="values.v2p">Crediamo nel potere trasformativo della compassione: ogni persona deve sentirsi valorizzata e ispirata a partecipare.</p></div>
+        <div class="value" style="--v-accent:var(--accent-d)"><b data-i18n="values.v3t">Inclusione</b><p data-i18n="values.v3p">Garantiamo a tutti l'accesso alle opportunità e facciamo sentire ogni persona accolta nella nostra comunità.</p></div>
+        <div class="value" style="--v-accent:var(--accent)"><b data-i18n="values.v4t">Rispetto</b><p data-i18n="values.v4p">Rispettiamo la dignità, i diritti e le voci di ogni bambino e di ogni comunità che serviamo.</p></div>
+        <div class="value" style="--v-accent:var(--accent-d)"><b data-i18n="values.v5t">Innovazione</b><p data-i18n="values.v5p">Cerchiamo soluzioni creative per affrontare le sfide dell'istruzione e della beneficenza nel mondo moderno.</p></div>
+        <div class="value" style="--v-accent:var(--clay)"><b data-i18n="values.v6t">Diversità</b><p data-i18n="values.v6p">Valorizziamo le prospettive uniche e celebriamo la diversità come fonte di forza e ispirazione.</p></div>
+        <div class="value" style="--v-accent:var(--accent-d)"><b data-i18n="values.v7t">Autenticità</b><p data-i18n="values.v7p">Diamo valore all'onestà, alla trasparenza e alla fedeltà alle nostre radici.</p></div>
       </div>
     </div>
   </div>
@@ -499,8 +509,8 @@
     </div>
 
     <div class="grid grid--2">
-      <div class="acct" data-reveal style="--acct-accent:var(--yellow)">
-        <span class="acct__tag" style="--acct-accent:var(--yellow)" data-i18n="trans.tag1">Conto 1 · Costruzione scuola</span>
+      <div class="acct" data-reveal style="--acct-accent:var(--accent)">
+        <span class="acct__tag" style="--acct-accent:var(--accent)" data-i18n="trans.tag1">Conto 1 · Costruzione scuola</span>
         <h3>Bella Esperanza ODV</h3>
         <dl>
           <div><dt data-i18n="trans.bank">Banca</dt><dd>Cassa Raiffeisen Bassa Atesina</dd></div>
@@ -513,8 +523,8 @@
         </button>
       </div>
 
-      <div class="acct" data-reveal style="--d:120ms;--acct-accent:var(--purple)">
-        <span class="acct__tag" style="--acct-accent:var(--purple)" data-i18n="trans.tag2">Conto 2 · Costi operativi</span>
+      <div class="acct" data-reveal style="--d:120ms;--acct-accent:var(--accent-d)">
+        <span class="acct__tag" style="--acct-accent:var(--accent-d)" data-i18n="trans.tag2">Conto 2 · Costi operativi</span>
         <h3>Bella Esperanza ODV</h3>
         <dl>
           <div><dt data-i18n="trans.bank">Banca</dt><dd>Cassa Raiffeisen Bassa Atesina</dd></div>
@@ -557,7 +567,7 @@
     </div>
 
     <div class="rail" data-rail="friends">
-      <figure class="quote" style="--q-accent:var(--orange)">
+      <figure class="quote" style="--q-accent:var(--clay)">
         <div class="quote__mark" aria-hidden="true">“</div>
         <blockquote style="margin:0"><p data-i18n="friends.q1">Come africano so quanto sia difficile accedere all'istruzione, soprattutto in alcune zone dell'Africa. Non tutti hanno il privilegio di ricevere un'istruzione. BE sta creando consapevolezza e opportunità per il futuro dei ragazzi. Mi sento privilegiato a far parte di questa organizzazione.</p></blockquote>
         <figcaption class="quote__by">
@@ -566,7 +576,7 @@
         </figcaption>
       </figure>
 
-      <figure class="quote" style="--q-accent:var(--yellow)">
+      <figure class="quote" style="--q-accent:var(--accent)">
         <div class="quote__mark" aria-hidden="true">“</div>
         <blockquote style="margin:0"><p data-i18n="friends.q2">Essendo di base in Tanzania, dove BE opera, sono molto orgoglioso di poter sostenere e supervisionare localmente il primo progetto pilota. Per me l'istruzione è fondamentale per il futuro dell'Africa. BE tocca direttamente una società che aveva perso la speranza.</p></blockquote>
         <figcaption class="quote__by">
@@ -575,7 +585,7 @@
         </figcaption>
       </figure>
 
-      <figure class="quote" style="--q-accent:var(--pink)">
+      <figure class="quote" style="--q-accent:var(--accent-soft)">
         <div class="quote__mark" aria-hidden="true">“</div>
         <blockquote style="margin:0"><p data-i18n="friends.q3">Da bambino pensavo che la beneficenza significasse solo denaro. Essendo cresciuto con mezzi limitati, non vedevo come avrei potuto fare la differenza. L'approccio innovativo di BE permette a persone come me di guidare il cambiamento sociale attraverso l'arte.</p></blockquote>
         <figcaption class="quote__by">
@@ -584,7 +594,7 @@
         </figcaption>
       </figure>
 
-      <figure class="quote" style="--q-accent:var(--teal)">
+      <figure class="quote" style="--q-accent:var(--accent-d)">
         <div class="quote__mark" aria-hidden="true">“</div>
         <blockquote style="margin:0"><p data-i18n="friends.q4">BE sta costruendo una rete globale di esperti e unisce attivisti. Se vogliamo avere un impatto più rapido sul mondo, serve una forte cooperazione tra imprese, organizzazioni e settore pubblico. È entusiasmante essere parte di un movimento in cui l'arte costruisce collaborazione attorno all'istruzione.</p></blockquote>
         <figcaption class="quote__by">
@@ -593,7 +603,7 @@
         </figcaption>
       </figure>
 
-      <figure class="quote" style="--q-accent:var(--purple)">
+      <figure class="quote" style="--q-accent:var(--accent-d)">
         <div class="quote__mark" aria-hidden="true">“</div>
         <blockquote style="margin:0"><p data-i18n="friends.q5">Per me è importante restituire qualcosa alle persone e sono felice di poter creare un cambiamento sociale con BE. Grazie a BE ho già incontrato molte persone incredibili che, come me, hanno deciso di unirsi a questa missione, senza chiedere nulla in cambio.</p></blockquote>
         <figcaption class="quote__by">
@@ -602,7 +612,7 @@
         </figcaption>
       </figure>
 
-      <figure class="quote" style="--q-accent:var(--green)">
+      <figure class="quote" style="--q-accent:var(--accent)">
         <div class="quote__mark" aria-hidden="true">“</div>
         <blockquote style="margin:0"><p data-i18n="friends.q6">L'istruzione è un tema cruciale quando si pensa al futuro dell'Africa, e per me l'Africa è il futuro. BE è nuova, fresca ed entusiasmante, creata da un gruppo di persone ispirate a qualcosa che non ho mai visto prima nel settore delle ONG. Sono molto grata di farne parte.</p></blockquote>
         <figcaption class="quote__by">
@@ -642,6 +652,33 @@
           <a href="mailto:amele@bellaesperanza.org">amele@bellaesperanza.org</a>
         </article>
       </div>
+
+      <div style="margin-top:clamp(3rem,6vw,4.5rem)">
+        <h3 class="display-s" data-reveal data-i18n="team.crewTitle">Volontarie e volontari</h3>
+        <p class="lede" style="margin-bottom:var(--s-6)" data-reveal data-i18n="team.crewLede">Le persone che mettono a disposizione tempo, competenze e cuore.</p>
+        <ul class="crew" data-reveal>
+          <li><figure><img src="assets/img/team/anderson-tagon.jpg" alt="Anderson Tagon" loading="lazy" width="700" height="700"><figcaption>Anderson Tagon</figcaption></figure></li>
+          <li><figure><img src="assets/img/team/carolin-pfeifer.jpg" alt="Carolin Pfeifer" loading="lazy" width="700" height="700"><figcaption>Carolin Pfeifer</figcaption></figure></li>
+          <li><figure><img src="assets/img/team/diego-moreno.jpg" alt="Diego Moreno" loading="lazy" width="700" height="700"><figcaption>Diego Moreno</figcaption></figure></li>
+          <li><figure><img src="assets/img/team/eleonora-crippa.jpg" alt="Eleonora Crippa" loading="lazy" width="700" height="700"><figcaption>Eleonora Crippa</figcaption></figure></li>
+          <li><figure><img src="assets/img/team/elisa-trento.jpg" alt="Elisa Trento" loading="lazy" width="700" height="700"><figcaption>Elisa Trento</figcaption></figure></li>
+          <li><figure><img src="assets/img/team/elisenda-ramoneda.jpg" alt="Elisenda Ramoneda" loading="lazy" width="700" height="700"><figcaption>Elisenda Ramoneda</figcaption></figure></li>
+          <li><figure><img src="assets/img/team/federica-roverato.jpg" alt="Federica Roverato" loading="lazy" width="700" height="700"><figcaption>Federica Roverato</figcaption></figure></li>
+          <li><figure><img src="assets/img/team/gabriela-nunez.jpg" alt="Gabriela Nuñez" loading="lazy" width="700" height="700"><figcaption>Gabriela Nuñez</figcaption></figure></li>
+          <li><figure><img src="assets/img/team/gabriele-tirelli.jpg" alt="Gabriele Tirelli" loading="lazy" width="700" height="700"><figcaption>Gabriele Tirelli</figcaption></figure></li>
+          <li><figure><img src="assets/img/team/giulia-caruso.jpg" alt="Giulia Caruso" loading="lazy" width="700" height="700"><figcaption>Giulia Caruso</figcaption></figure></li>
+          <li><figure><img src="assets/img/team/giulia-cavallini.jpg" alt="Giulia Cavallini" loading="lazy" width="700" height="700"><figcaption>Giulia Cavallini</figcaption></figure></li>
+          <li><figure><img src="assets/img/team/giulia-serafini.jpg" alt="Giulia Serafini" loading="lazy" width="700" height="700"><figcaption>Giulia Serafini</figcaption></figure></li>
+          <li><figure><img src="assets/img/team/giulio-vescovi.jpg" alt="Giulio Vescovi" loading="lazy" width="700" height="700"><figcaption>Giulio Vescovi</figcaption></figure></li>
+          <li><figure><img src="assets/img/team/ivan-dignoti.jpg" alt="Ivan D’Ignoti" loading="lazy" width="700" height="700"><figcaption>Ivan D’Ignoti</figcaption></figure></li>
+          <li><figure><img src="assets/img/team/lorenzo-ferrari.jpg" alt="Lorenzo Ferrari" loading="lazy" width="700" height="700"><figcaption>Lorenzo Ferrari</figcaption></figure></li>
+          <li><figure><img src="assets/img/team/mia-vilardo.jpg" alt="Mia Vilardo" loading="lazy" width="700" height="700"><figcaption>Mia Vilardo</figcaption></figure></li>
+          <li><figure><img src="assets/img/team/mikaela-bandini.jpg" alt="Mikaela Bandini" loading="lazy" width="700" height="700"><figcaption>Mikaela Bandini</figcaption></figure></li>
+          <li><figure><img src="assets/img/team/nicolas-seegatz.jpg" alt="Nicolas Seegatz" loading="lazy" width="700" height="700"><figcaption>Nicolas Seegatz</figcaption></figure></li>
+          <li><figure><img src="assets/img/team/raphael-haule.jpg" alt="Raphael Haule" loading="lazy" width="700" height="700"><figcaption>Raphael Haule</figcaption></figure></li>
+          <li><figure><img src="assets/img/team/samantha-faini.jpg" alt="Samantha Faini" loading="lazy" width="700" height="700"><figcaption>Samantha Faini</figcaption></figure></li>
+        </ul>
+      </div>
     </div>
   </div>
 </section>
@@ -652,7 +689,7 @@
     <div style="text-align:center;margin-bottom:clamp(2rem,4vw,3rem)" data-reveal>
       <p class="eyebrow" style="justify-content:center" data-i18n="partners.eyebrow">In buona compagnia</p>
       <h2 class="display-m" style="max-width:22ch;margin-inline:auto" data-i18n="partners.title">Brand e persone che hanno trasformato una visione in realtà.</h2>
-      <p style="max-width:46ch;margin:var(--s-4) auto 0;color:rgba(251,247,241,.68)" data-i18n="partners.support">Sostenitori, artisti e aziende che rendono possibile il nostro lavoro.</p>
+      <p style="max-width:46ch;margin:var(--s-4) auto 0;color:rgba(250,250,246,.68)" data-i18n="partners.support">Sostenitori, artisti e aziende che rendono possibile il nostro lavoro.</p>
     </div>
 
     <ul class="logo-wall" data-reveal>
@@ -689,7 +726,7 @@
         <li><img src="assets/img/logos/logo-jr-studio.png" alt="JR Studio" loading="lazy" width="365" height="61"></li>
       </ul>
 
-    <p style="text-align:center;max-width:60ch;margin:clamp(2rem,4vw,3rem) auto 0;color:rgba(251,247,241,.72)" data-reveal data-i18n="partners.thanks">Un ringraziamento speciale a Karlheinz Salzburger, Esemplare e Mirai Bay, che hanno messo le basi del nostro progetto.</p>
+    <p style="text-align:center;max-width:60ch;margin:clamp(2rem,4vw,3rem) auto 0;color:rgba(250,250,246,.72)" data-reveal data-i18n="partners.thanks">Un ringraziamento speciale a Karlheinz Salzburger, Esemplare e Mirai Bay, che hanno messo le basi del nostro progetto.</p>
   </div>
 </section>
 
@@ -724,27 +761,27 @@
     </div>
 
     <div class="grid grid--3">
-      <article class="card" data-reveal style="--card-accent:var(--orange)">
+      <article class="card" data-reveal style="--card-accent:var(--clay)">
         <h3 data-i18n="support.s1t">Diffondi la voce</h3>
         <p data-i18n="support.s1p">Parlando della nostra causa rendi i nostri obiettivi visibili a nuove persone.</p>
       </article>
-      <article class="card" data-reveal style="--d:80ms;--card-accent:var(--pink)">
+      <article class="card" data-reveal style="--d:80ms;--card-accent:var(--accent-soft)">
         <h3 data-i18n="support.s2t">Partecipa ai nostri eventi</h3>
         <p data-i18n="support.s2p">Aiutaci a trasformarli in momenti indimenticabili e di impatto.</p>
       </article>
-      <article class="card" data-reveal style="--d:160ms;--card-accent:var(--purple)">
+      <article class="card" data-reveal style="--d:160ms;--card-accent:var(--accent-d)">
         <h3 data-i18n="support.s3t">Collabora con noi</h3>
         <p data-i18n="support.s3p">Creiamo insieme progetti ed esperienze che guidano un cambiamento significativo.</p>
       </article>
-      <article class="card" data-reveal style="--card-accent:var(--green)">
+      <article class="card" data-reveal style="--card-accent:var(--accent)">
         <h3 data-i18n="support.s4t">Diventa volontario</h3>
         <p data-i18n="support.s4p">Entra a far parte del team Bella Esperanza e costruiamo insieme un futuro migliore.</p>
       </article>
-      <article class="card" data-reveal style="--d:80ms;--card-accent:var(--teal)">
+      <article class="card" data-reveal style="--d:80ms;--card-accent:var(--accent-d)">
         <h3 data-i18n="support.s5t">Crea azione</h3>
         <p data-i18n="support.s5p">Condividi la nostra missione nella tua rete e permetti ad altri di sostenere il nostro lavoro.</p>
       </article>
-      <article class="card" data-reveal style="--d:160ms;--card-accent:var(--yellow)">
+      <article class="card" data-reveal style="--d:160ms;--card-accent:var(--accent)">
         <h3 data-i18n="support.s6t">Diventa BEfriend</h3>
         <p data-i18n="support.s6p">Unisciti a noi oggi e porta speranza: scrivi a info@bellaesperanza.org.</p>
       </article>
@@ -764,7 +801,7 @@
     </div>
 
     <div class="grid grid--3">
-      <a class="post" href="magazine.html#on" data-reveal style="--tint:linear-gradient(150deg,rgba(254,204,78,.3),rgba(243,121,50,.25))">
+      <a class="post" href="magazine.html#on" data-reveal style="--tint:var(--tint-1)">
         <div class="post__img" style="--focus:50% 18%"><img src="assets/img/mag-on.jpg" alt="Milan Relay Marathon insieme a ON" loading="lazy" width="1200" height="1800"></div>
         <div class="post__body">
           <span class="post__tag">Sport</span>
@@ -774,7 +811,7 @@
         </div>
       </a>
 
-      <a class="post" href="magazine.html#esemplare" data-reveal style="--d:110ms;--tint:linear-gradient(150deg,rgba(107,105,176,.3),rgba(240,76,113,.25))">
+      <a class="post" href="magazine.html#esemplare" data-reveal style="--d:110ms;--tint:var(--tint-2)">
         <div class="post__img" style="--focus:50% 26%"><img src="assets/img/mag-esemplare.jpg" alt="Capo Esemplare, il brand che dona il 100% dei profitti" loading="lazy" width="1128" height="1400"></div>
         <div class="post__body">
           <span class="post__tag">Fashion</span>
@@ -784,7 +821,7 @@
         </div>
       </a>
 
-      <a class="post" href="magazine.html#kult" data-reveal style="--d:220ms;--tint:linear-gradient(150deg,rgba(0,206,180,.3),rgba(107,105,176,.25))">
+      <a class="post" href="magazine.html#kult" data-reveal style="--d:220ms;--tint:var(--tint-3)">
         <div class="post__img" style="--focus:50% 28%"><img src="assets/img/mag-kult.jpg" alt="Bella Esperanza sul palco di Women in the Industry, Milan Music Week" loading="lazy" width="1200" height="1800"></div>
         <div class="post__body">
           <span class="post__tag">Musica</span>
@@ -822,23 +859,23 @@
         <h3 class="display-s" data-i18n="contact.direct">Contatti diretti</h3>
         <ul style="list-style:none;padding:0;display:grid;gap:var(--s-4);margin-top:var(--s-4)">
           <li>
-            <p style="font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--yellow);margin:0 0 .2em" data-i18n="contact.general">Richieste generali e collaborazioni</p>
+            <p style="font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin:0 0 .2em" data-i18n="contact.general">Richieste generali e collaborazioni</p>
             <a href="mailto:info@bellaesperanza.org" class="tlink">info@bellaesperanza.org</a>
           </li>
           <li>
-            <p style="font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--yellow);margin:0 0 .2em" data-i18n="contact.president">Presidente · Alexandra Pfeifer</p>
+            <p style="font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin:0 0 .2em" data-i18n="contact.president">Presidente · Alexandra Pfeifer</p>
             <a href="mailto:apfeifer@bellaesperanza.org" class="tlink">apfeifer@bellaesperanza.org</a>
           </li>
           <li>
-            <p style="font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--yellow);margin:0 0 .2em" data-i18n="contact.vice">Vice-presidente · Johannes March</p>
+            <p style="font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin:0 0 .2em" data-i18n="contact.vice">Vice-presidente · Johannes March</p>
             <a href="mailto:jm@bellaesperanza.org" class="tlink">jm@bellaesperanza.org</a>
           </li>
           <li>
-            <p style="font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--yellow);margin:0 0 .2em" data-i18n="contact.board">Consigliere · Alessandro Mele</p>
+            <p style="font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin:0 0 .2em" data-i18n="contact.board">Consigliere · Alessandro Mele</p>
             <a href="mailto:amele@bellaesperanza.org" class="tlink">amele@bellaesperanza.org</a>
           </li>
           <li>
-            <p style="font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--yellow);margin:0 0 .2em" data-i18n="contact.address">Sede</p>
+            <p style="font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin:0 0 .2em" data-i18n="contact.address">Sede</p>
             <p style="margin:0">Bella Esperanza ODV<br>Via Nazario Sauro 14/A<br>39055 Laives (BZ), Italia</p>
           </li>
         </ul>

@@ -23,6 +23,16 @@
 
 <link rel="preload" href="../assets/fonts/poppins-800-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="../assets/fonts/inter-var-latin.woff2" as="font" type="font/woff2" crossorigin>
+<script>
+/* Farbwelt aus der URL lesen (?theme=yellow). Steht bewusst inline im Kopf,
+   damit die Seite nicht kurz im falschen Set aufblitzt. */
+(function () {
+  try {
+    var t = new URLSearchParams(location.search).get('theme');
+    if (t === 'yellow' || t === 'green') document.documentElement.dataset.theme = t;
+  } catch (e) {}
+})();
+</script>
 <link rel="stylesheet" href="../assets/css/style.css">
 </head>
 
@@ -104,15 +114,15 @@
       </div>
 
       <div class="grid" data-reveal style="gap:var(--s-4);--d:120ms">
-        <article class="card" style="--card-accent:var(--yellow)">
+        <article class="card" style="--card-accent:var(--accent)">
           <h3>€25</h3>
           <p>School and art supplies for one class during a workshop.</p>
         </article>
-        <article class="card" style="--card-accent:var(--orange)">
+        <article class="card" style="--card-accent:var(--clay)">
           <h3>€75</h3>
           <p>Furniture and equipment for one study place in the new school.</p>
         </article>
-        <article class="card" style="--card-accent:var(--pink)">
+        <article class="card" style="--card-accent:var(--accent-soft)">
           <h3>€250</h3>
           <p>A concrete contribution to building one of the 10 classrooms.</p>
         </article>
@@ -136,17 +146,17 @@
     <div class="stat-row" style="margin-bottom:clamp(2.5rem,5vw,4rem)">
       <div class="stat" data-reveal>
         <p class="stat__pre">By 2027</p>
-        <span class="stat__val" data-count="360" style="--stat-color:var(--yellow)">360</span>
+        <span class="stat__val" data-count="360" style="--stat-color:var(--accent)">360</span>
         <p class="stat__post">children will have access to education.</p>
       </div>
       <div class="stat" data-reveal style="--d:120ms">
         <p class="stat__pre">Of your online donation</p>
-        <span class="stat__val" data-count="100" data-suffix="%" style="--stat-color:var(--green)">100%</span>
+        <span class="stat__val" data-count="100" data-suffix="%" style="--stat-color:var(--accent)">100%</span>
         <p class="stat__post">funds the school project — never operating costs.</p>
       </div>
       <div class="stat" data-reveal style="--d:240ms">
         <p class="stat__pre">A campus with</p>
-        <span class="stat__val" data-count="10" style="--stat-color:var(--pink)">10</span>
+        <span class="stat__val" data-count="10" style="--stat-color:var(--accent-soft)">10</span>
         <p class="stat__post">classrooms, two dormitories, a library, a canteen and a sports field.</p>
       </div>
     </div>
@@ -179,8 +189,8 @@
     </div>
 
     <div class="grid grid--2">
-      <div class="acct" data-reveal style="--acct-accent:var(--yellow)">
-        <span class="acct__tag" style="--acct-accent:var(--yellow)">Account 1 · School construction</span>
+      <div class="acct" data-reveal style="--acct-accent:var(--accent)">
+        <span class="acct__tag" style="--acct-accent:var(--accent)">Account 1 · School construction</span>
         <h3>Bella Esperanza ODV</h3>
         <dl>
           <div><dt>Bank</dt><dd>Cassa Raiffeisen Bassa Atesina</dd></div>
@@ -193,8 +203,8 @@
         </button>
       </div>
 
-      <div class="acct" data-reveal style="--d:120ms;--acct-accent:var(--purple)">
-        <span class="acct__tag" style="--acct-accent:var(--purple)">Account 2 · Operating costs</span>
+      <div class="acct" data-reveal style="--d:120ms;--acct-accent:var(--accent-d)">
+        <span class="acct__tag" style="--acct-accent:var(--accent-d)">Account 2 · Operating costs</span>
         <h3>Bella Esperanza ODV</h3>
         <dl>
           <div><dt>Bank</dt><dd>Cassa Raiffeisen Bassa Atesina</dd></div>
@@ -219,8 +229,8 @@
         <h2 class="display-l">A concrete gesture that costs you nothing.</h2>
         <p class="lede">In your Italian tax return, sign in the box for volunteer organisations and enter Bella Esperanza ODV’s fiscal code.</p>
 
-        <div class="acct" style="--acct-accent:var(--green);margin-top:var(--s-6);max-width:440px">
-          <span class="acct__tag" style="--acct-accent:var(--green)">Fiscal code</span>
+        <div class="acct" style="--acct-accent:var(--accent);margin-top:var(--s-6);max-width:440px">
+          <span class="acct__tag" style="--acct-accent:var(--accent)">Fiscal code</span>
           <dl>
             <div><dt>Bella Esperanza ODV</dt><dd style="font-size:1.35rem;letter-spacing:.06em">94155370219</dd></div>
           </dl>
@@ -250,15 +260,15 @@
     </div>
 
     <div class="grid grid--3">
-      <article class="card" data-reveal style="--card-accent:var(--yellow)">
+      <article class="card" data-reveal style="--card-accent:var(--accent)">
         <h3>Co-create with your brand</h3>
         <p>Let’s design a tailor-made initiative for your company. Write to info@bellaesperanza.org.</p>
       </article>
-      <article class="card" data-reveal style="--d:110ms;--card-accent:var(--pink)">
+      <article class="card" data-reveal style="--d:110ms;--card-accent:var(--accent-soft)">
         <h3>Become a BEfriend</h3>
         <p>Join our global community and carry the mission into your network.</p>
       </article>
-      <article class="card" data-reveal style="--d:220ms;--card-accent:var(--teal)">
+      <article class="card" data-reveal style="--d:220ms;--card-accent:var(--accent-d)">
         <h3>Volunteer</h3>
         <p>Give your time and skills, in Italy or in Tanzania.</p>
       </article>
