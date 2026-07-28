@@ -285,18 +285,23 @@
 
   /* --- 12. Farbwelt-Umschalter (nur Vorschau) ------------------------------
      Zwei abgestimmte Sets stehen zur Auswahl, siehe :root und
-     :root[data-theme="yellow"] in style.css. Der Umschalter erscheint nur,
-     wenn die URL ?preview oder ?theme enthält — auf der späteren Live-Seite
-     bleibt er dadurch unsichtbar, ohne dass etwas entfernt werden muss.
+     :root[data-theme="yellow"] in style.css. Der Umschalter sitzt im Kopf
+     neben der Sprachwahl und erscheint nur, wenn die URL ?preview oder
+     ?theme enthält — auf der Live-Seite bleibt er dadurch unsichtbar.
      ---------------------------------------------------------------------- */
   (function () {
     var params = new URLSearchParams(location.search);
     if (!params.has('preview') && !params.has('theme')) return;
 
+    var host = document.querySelector('.nav-tools');
+    var lang = document.querySelector('.nav-tools .lang');
+    if (!host) return;
+
     var active = document.documentElement.dataset.theme === 'yellow' ? 'yellow' : 'green';
     var box = document.createElement('div');
     box.className = 'theme-switch';
-    box.innerHTML = '<span class="theme-switch__label">Farbwelt</span>';
+    box.setAttribute('role', 'group');
+    box.setAttribute('aria-label', 'Farbwelt / Colour set');
 
     [['green', 'Grün, zurückhaltend'], ['yellow', 'Gelb, lebendig']].forEach(function (pair) {
       var url = new URL(location.href);
@@ -311,6 +316,8 @@
       box.appendChild(a);
     });
 
-    document.body.appendChild(box);
+    // direkt hinter die Sprachwahl, damit beide Schalter zusammen stehen
+    if (lang && lang.nextSibling) host.insertBefore(box, lang.nextSibling);
+    else host.appendChild(box);
   })();
 })();

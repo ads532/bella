@@ -1442,42 +1442,32 @@ a.frame:hover img, .frame--hover:hover img { transform: scale(1.045); }
 
 /* --------------------------------------------------------------------------
    27. Farbwelt-Umschalter (nur Vorschau)
-   Erscheint ausschliesslich, wenn die URL ?preview oder ?theme enthaelt.
-   Auf der spaeteren Live-Seite ist er dadurch unsichtbar.
+   Sitzt im Kopf neben der Sprachwahl und erscheint ausschliesslich, wenn die
+   URL ?preview oder ?theme enthaelt. Auf der spaeteren Live-Seite ist er
+   dadurch unsichtbar, ohne dass etwas entfernt werden muss.
    -------------------------------------------------------------------------- */
 .theme-switch {
-  position: fixed;
-  left: var(--gutter);
-  bottom: calc(var(--s-5) + var(--consent-h, 0px));
-  z-index: 95;
-  display: flex; align-items: center; gap: var(--s-2);
-  padding: 6px 6px 6px 14px;
+  display: inline-flex; align-items: center; gap: 4px;
+  padding: 4px;
   border-radius: var(--r-pill);
-  background: rgba(20, 24, 21, .88);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  box-shadow: var(--sh-2);
-  transition: bottom var(--t-mid) var(--ease-out);
+  background: rgba(255, 255, 255, .16);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
 }
-.theme-switch__label {
-  font-family: "Inter", sans-serif;
-  font-size: .68rem; font-weight: 700;
-  letter-spacing: .14em; text-transform: uppercase;
-  color: rgba(255, 255, 255, .55);
-  margin-right: var(--s-1);
-}
+.is-stuck .theme-switch { background: rgba(20, 24, 21, .07); }
 .theme-switch a {
-  width: 30px; height: 30px;
+  width: 20px; height: 20px;
   border-radius: var(--r-pill);
   display: block;
-  box-shadow: inset 0 0 0 2px rgba(255, 255, 255, .25);
+  box-shadow: inset 0 0 0 1.5px rgba(255, 255, 255, .35);
   transition: transform var(--t-fast) var(--ease-spring), box-shadow var(--t-fast) var(--ease-out);
 }
-.theme-switch a:hover { transform: scale(1.12); }
-.theme-switch a[aria-current="true"] { box-shadow: inset 0 0 0 2px #fff, 0 0 0 3px rgba(255, 255, 255, .22); }
+.is-stuck .theme-switch a { box-shadow: inset 0 0 0 1.5px rgba(20, 24, 21, .18); }
+.theme-switch a:hover { transform: scale(1.15); }
+.theme-switch a[aria-current="true"] { box-shadow: 0 0 0 2px var(--white), 0 0 0 3.5px rgba(20, 24, 21, .35); }
+.is-stuck .theme-switch a[aria-current="true"] { box-shadow: 0 0 0 2px var(--ink); }
 .theme-switch .sw-green  { background: linear-gradient(135deg, #72C594, #2C6247); }
 .theme-switch .sw-yellow { background: linear-gradient(135deg, #FECC4E, #F04C71); }
-@media (max-width: 620px) { .theme-switch { padding-left: 10px; } .theme-switch__label { display: none; } }
 
 /* --------------------------------------------------------------------------
    28. Freiwilligen-Raster
