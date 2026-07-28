@@ -21,9 +21,8 @@
 <link rel="icon" href="../assets/img/favicon.png" sizes="any">
 <link rel="apple-touch-icon" href="../assets/img/favicon.png">
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&family=Inter:wght@400;500;600;700&family=Cardo:ital@0;1&display=swap" rel="stylesheet">
+<link rel="preload" href="../assets/fonts/poppins-800-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../assets/fonts/inter-var-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="../assets/css/style.css">
 </head>
 
@@ -321,6 +320,12 @@
         <h4 style="margin-top:var(--s-6)">School account</h4>
         <ul>
           <li style="font-family:ui-monospace,Menlo,monospace;font-size:.82rem;word-break:break-all">IT50 S081 1458 4800 0030 0271 209</li>
+          <li>
+            <button class="copy-btn copy-btn--sm" type="button" data-copy="IT50S0811458480000300271209">
+              <svg width="13" height="13" viewBox="0 0 16 16" fill="none" aria-hidden="true"><rect x="5.5" y="5.5" width="8" height="8" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M10.5 3.5A2 2 0 0 0 8.5 2H4.5a2 2 0 0 0-2 2v4a2 2 0 0 0 1.5 1.94" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+              <span class="copy-label" data-idle="Copy IBAN" data-done="Copied!">Copia IBAN</span>
+            </button>
+          </li>
         </ul>
       </div>
     </div>
@@ -330,10 +335,31 @@
         <a href="https://www.bellaesperanza.org/it/privacy-policy-2/">Privacy Policy</a>
         <a href="https://www.bellaesperanza.org/cookie-policy">Cookie Policy</a>
         <a href="https://www.bellaesperanza.org/credits">Credits</a>
+        <a href="#" data-consent-open>Privacy settings</a>
       </nav>
     </div>
   </div>
 </footer>
+
+
+<!-- ================================================= EINWILLIGUNG -->
+<section class="consent" data-consent-banner hidden role="region" aria-labelledby="consent-title">
+  <div class="consent__inner">
+    <p class="consent__text">
+      <b id="consent-title">We respect your privacy</b>
+      <span>This site uses no tracking cookies and loads nothing from external servers — even the typefaces are hosted by us. We only store your choice here, so we do not have to ask again. If you also accept statistics, we will be able to understand anonymously which content works.</span>
+      <a href="https://www.bellaesperanza.org/cookie-policy">Cookie Policy</a>
+    </p>
+    <div class="consent__actions">
+      <button class="btn btn--ghost" type="button" data-consent-set="necessary">Necessary only</button>
+      <button class="btn btn--accent" type="button" data-consent-set="all">Accept all</button>
+    </div>
+  </div>
+</section>
+
+<button class="to-top" type="button" data-to-top aria-label="Back to top">
+  <svg width="18" height="18" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M8 13V3M4 7l4-4 4 4" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg>
+</button>
 
 <script src="../assets/js/main.js"></script>
 </body>

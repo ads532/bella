@@ -287,5 +287,12 @@
   "magpage.jr.p1": "We are excited about our collaboration with JR Studio and its visionary CEO, Jeoffrey Romano. Known for its cutting-edge approach, JR Studio fully shares Bella Esperanza’s mission of generating positive impact through art and community projects.",
   "magpage.jr.p2": "Together we will create dynamic experiences that amplify our cause and bring our vision to life.",
   "magpage.ctaTitle": "The next project could be yours.",
-  "magpage.ctaLede": "We work with brands and companies to create tailor-made projects aligned with your goals and values — for you, or with you, on our next trip to Tanzania."
+  "magpage.ctaLede": "We work with brands and companies to create tailor-made projects aligned with your goals and values — for you, or with you, on our next trip to Tanzania.",
+  "ui.toTop": "Back to top",
+  "consent.title": "We respect your privacy",
+  "consent.text": "This site uses no tracking cookies and loads nothing from external servers — even the typefaces are hosted by us. We only store your choice here, so we do not have to ask again. If you also accept statistics, we will be able to understand anonymously which content works.",
+  "consent.accept": "Accept all",
+  "consent.reject": "Necessary only",
+  "footer.consent": "Privacy settings",
+  "partners.support": "Supporters, artists and companies who make our work possible."
 }

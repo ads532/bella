@@ -19,9 +19,8 @@
 <link rel="icon" href="assets/img/favicon.png" sizes="any">
 <link rel="apple-touch-icon" href="assets/img/favicon.png">
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&family=Inter:wght@400;500;600;700&family=Cardo:ital@0;1&display=swap" rel="stylesheet">
+<link rel="preload" href="assets/fonts/poppins-800-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/inter-var-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="assets/css/style.css">
 
 <style>
@@ -112,8 +111,8 @@
     <!-- ON -->
     <article class="article" id="on" data-reveal>
       <div class="article__media">
-        <div class="frame ratio-3-2 frame--hover frame--tint" style="--tint:linear-gradient(150deg,rgba(254,204,78,.28),rgba(243,121,50,.22))">
-          <img src="assets/img/mag-on.jpg" alt="Milan Relay Marathon insieme a ON" loading="lazy" width="1800" height="1200">
+        <div class="frame ratio-4-5 frame--hover frame--tint" style="--focus:50% 18%;--tint:linear-gradient(150deg,rgba(254,204,78,.28),rgba(243,121,50,.22))">
+          <img src="assets/img/mag-on.jpg" alt="Milan Relay Marathon insieme a ON" loading="lazy" width="1200" height="1800">
         </div>
       </div>
       <div>
@@ -133,8 +132,8 @@
     <!-- Esemplare -->
     <article class="article" id="esemplare" data-reveal>
       <div class="article__media">
-        <div class="frame ratio-3-2 frame--hover frame--tint" style="--tint:linear-gradient(150deg,rgba(107,105,176,.28),rgba(240,76,113,.22))">
-          <img src="assets/img/mag-esemplare.jpg" alt="Capi Esemplare, il brand che dona il 100% dei profitti" loading="lazy" width="1400" height="1750">
+        <div class="frame ratio-4-5 frame--hover frame--tint" style="--focus:50% 26%;--tint:linear-gradient(150deg,rgba(107,105,176,.28),rgba(240,76,113,.22))">
+          <img src="assets/img/mag-esemplare.jpg" alt="Capi Esemplare, il brand che dona il 100% dei profitti" loading="lazy" width="1128" height="1400">
         </div>
       </div>
       <div>
@@ -149,8 +148,8 @@
     <!-- Mark Giusti -->
     <article class="article" id="giusti" data-reveal>
       <div class="article__media">
-        <div class="frame ratio-3-2 frame--hover frame--tint" style="--tint:linear-gradient(150deg,rgba(0,206,180,.26),rgba(107,105,176,.22))">
-          <img src="assets/img/mag-giusti.jpg" alt="Evento Mark Giusti a sostegno di Bella Esperanza" loading="lazy" width="1400" height="1586">
+        <div class="frame ratio-4-5 frame--hover frame--tint" style="--focus:50% 34%;--tint:linear-gradient(150deg,rgba(0,206,180,.26),rgba(107,105,176,.22))">
+          <img src="assets/img/mag-giusti.jpg" alt="Evento Mark Giusti a sostegno di Bella Esperanza" loading="lazy" width="1235" height="1400">
         </div>
       </div>
       <div>
@@ -165,8 +164,8 @@
     <!-- Island -->
     <article class="article" id="island" data-reveal>
       <div class="article__media">
-        <div class="frame ratio-3-2 frame--hover frame--tint" style="--tint:linear-gradient(150deg,rgba(240,76,113,.28),rgba(254,204,78,.22))">
-          <img src="assets/img/mag-island.jpg" alt="The Island Experience Festival, boat party" loading="lazy" width="1120" height="1400">
+        <div class="frame ratio-4-5 frame--hover frame--tint" style="--focus:50% 42%;--tint:linear-gradient(150deg,rgba(240,76,113,.28),rgba(254,204,78,.22))">
+          <img src="assets/img/mag-island.jpg" alt="The Island Experience Festival, boat party" loading="lazy" width="1400" height="1373">
         </div>
       </div>
       <div>
@@ -181,8 +180,8 @@
     <!-- Kult -->
     <article class="article" id="kult" data-reveal>
       <div class="article__media">
-        <div class="frame ratio-3-2 frame--hover frame--tint" style="--tint:linear-gradient(150deg,rgba(233,21,88,.26),rgba(107,105,176,.22))">
-          <img src="assets/img/mag-kult.jpg" alt="Bella Esperanza sul palco di Women in the Industry, Milan Music Week" loading="lazy" width="1200" height="1600">
+        <div class="frame ratio-4-5 frame--hover frame--tint" style="--focus:50% 28%;--tint:linear-gradient(150deg,rgba(233,21,88,.26),rgba(107,105,176,.22))">
+          <img src="assets/img/mag-kult.jpg" alt="Bella Esperanza sul palco di Women in the Industry, Milan Music Week" loading="lazy" width="1200" height="1800">
         </div>
       </div>
       <div>
@@ -197,8 +196,8 @@
     <!-- JR Studio -->
     <article class="article" id="jrstudio" data-reveal>
       <div class="article__media">
-        <div class="frame ratio-3-2 frame--hover frame--tint" style="--tint:linear-gradient(150deg,rgba(114,197,148,.26),rgba(0,206,180,.22))">
-          <img src="assets/img/mag-jr.jpg" alt="Jeoffrey Romano, CEO di JR Studio" loading="lazy" width="1400" height="2100">
+        <div class="frame ratio-4-5 frame--hover frame--tint" style="--focus:50% 16%;--tint:linear-gradient(150deg,rgba(114,197,148,.26),rgba(0,206,180,.22))">
+          <img src="assets/img/mag-jr.jpg" alt="Jeoffrey Romano, CEO di JR Studio" loading="lazy" width="932" height="1400">
         </div>
       </div>
       <div>
@@ -278,6 +277,12 @@
         <h4 style="margin-top:var(--s-6)" data-i18n="footer.bank">Conto scuola</h4>
         <ul>
           <li style="font-family:ui-monospace,Menlo,monospace;font-size:.82rem;word-break:break-all">IT50 S081 1458 4800 0030 0271 209</li>
+          <li>
+            <button class="copy-btn copy-btn--sm" type="button" data-copy="IT50S0811458480000300271209">
+              <svg width="13" height="13" viewBox="0 0 16 16" fill="none" aria-hidden="true"><rect x="5.5" y="5.5" width="8" height="8" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M10.5 3.5A2 2 0 0 0 8.5 2H4.5a2 2 0 0 0-2 2v4a2 2 0 0 0 1.5 1.94" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+              <span class="copy-label" data-idle="Copia IBAN" data-done="Copiato!" data-i18n-idle="ui.copyIban" data-i18n-done="ui.copied">Copia IBAN</span>
+            </button>
+          </li>
         </ul>
       </div>
     </div>
@@ -287,10 +292,31 @@
         <a href="https://www.bellaesperanza.org/it/privacy-policy-2/" data-i18n="footer.privacy">Privacy Policy</a>
         <a href="https://www.bellaesperanza.org/cookie-policy" data-i18n="footer.cookies">Cookie Policy</a>
         <a href="https://www.bellaesperanza.org/credits" data-i18n="footer.credits">Credits</a>
+        <a href="#" data-consent-open data-i18n="footer.consent">Impostazioni privacy</a>
       </nav>
     </div>
   </div>
 </footer>
+
+
+<!-- ================================================= EINWILLIGUNG -->
+<section class="consent" data-consent-banner hidden role="region" aria-labelledby="consent-title">
+  <div class="consent__inner">
+    <p class="consent__text">
+      <b id="consent-title" data-i18n="consent.title">Rispettiamo la tua privacy</b>
+      <span data-i18n="consent.text">Questo sito non usa cookie di tracciamento e non carica nulla da server esterni: anche i caratteri tipografici sono ospitati da noi. Salviamo soltanto la tua scelta, per non doverti chiedere di nuovo. Se accetti le statistiche, potremo capire in forma anonima quali contenuti funzionano.</span>
+      <a href="https://www.bellaesperanza.org/cookie-policy" data-i18n="footer.cookies">Cookie Policy</a>
+    </p>
+    <div class="consent__actions">
+      <button class="btn btn--ghost" type="button" data-consent-set="necessary" data-i18n="consent.reject">Solo necessari</button>
+      <button class="btn btn--accent" type="button" data-consent-set="all" data-i18n="consent.accept">Accetta tutto</button>
+    </div>
+  </div>
+</section>
+
+<button class="to-top" type="button" data-to-top aria-label="Torna all'inizio" data-i18n-aria="ui.toTop">
+  <svg width="18" height="18" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M8 13V3M4 7l4-4 4 4" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg>
+</button>
 
 <script src="assets/js/main.js"></script>
 </body>

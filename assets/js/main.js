@@ -179,4 +179,107 @@
   document.querySelectorAll('[data-year]').forEach(function (el) {
     el.textContent = String(new Date().getFullYear());
   });
+
+  /* --- 10. Back to top ----------------------------------------------------- */
+  var toTop = document.querySelector('[data-to-top]');
+  if (toTop) {
+    var topTicking = false;
+    var syncToTop = function () {
+      if (topTicking) return;
+      topTicking = true;
+      requestAnimationFrame(function () {
+        toTop.classList.toggle('is-in', window.scrollY > window.innerHeight * 0.75);
+        topTicking = false;
+      });
+    };
+    window.addEventListener('scroll', syncToTop, { passive: true });
+    syncToTop();
+    toTop.addEventListener('click', function () {
+      window.scrollTo({ top: 0, behavior: reduceMotion ? 'auto' : 'smooth' });
+      // Tastaturfokus mitnehmen, sonst springt Tab zurück in die Seitenmitte.
+      var brand = document.querySelector('.site-header .brand');
+      if (brand) brand.focus({ preventScroll: true });
+    });
+  }
+
+  /* --- 11. Einwilligung ----------------------------------------------------
+     Die Seite selbst setzt keine Cookies und lädt nichts von fremden Servern.
+     Gespeichert wird nur diese Entscheidung — das ist technisch notwendig und
+     damit einwilligungsfrei.
+
+     Wenn später Statistik oder Conversion-Tracking dazukommt, wird das Skript
+     so eingebunden und startet erst nach Zustimmung:
+
+         <script type="text/plain" data-consent="marketing" src="..."></script>
+
+     Zusätzlich steht window.beConsent bereit ('all' | 'necessary') und es wird
+     ein Event 'be:consent' ausgelöst.
+     ---------------------------------------------------------------------- */
+  var CONSENT_KEY = 'be-consent';
+  var banner = document.querySelector('[data-consent-banner]');
+
+  var readConsent = function () {
+    try { return localStorage.getItem(CONSENT_KEY); } catch (e) { return null; }
+  };
+
+  var activateConsented = function (level) {
+    window.beConsent = level;
+    if (level === 'all') {
+      document.querySelectorAll('script[type="text/plain"][data-consent]').forEach(function (node) {
+        var real = document.createElement('script');
+        for (var i = 0; i < node.attributes.length; i++) {
+          var attr = node.attributes[i];
+          if (attr.name !== 'type' && attr.name !== 'data-consent') {
+            real.setAttribute(attr.name, attr.value);
+          }
+        }
+        real.text = node.text;
+        node.parentNode.replaceChild(real, node);
+      });
+    }
+    document.dispatchEvent(new CustomEvent('be:consent', { detail: { level: level } }));
+  };
+
+  if (banner) {
+    var measure = function () {
+      document.documentElement.style.setProperty('--consent-h', banner.offsetHeight + 'px');
+    };
+    var showBanner = function () {
+      banner.hidden = false;
+      requestAnimationFrame(function () {
+        banner.classList.add('is-open');
+        measure();
+      });
+    };
+    var hideBanner = function () {
+      banner.classList.remove('is-open');
+      document.documentElement.style.setProperty('--consent-h', '0px');
+      setTimeout(function () { banner.hidden = true; }, 720);
+    };
+
+    var saved = readConsent();
+    if (saved === 'all' || saved === 'necessary') activateConsented(saved);
+    else showBanner();
+
+    banner.addEventListener('click', function (e) {
+      var btn = e.target.closest('[data-consent-set]');
+      if (!btn) return;
+      var level = btn.dataset.consentSet;
+      try { localStorage.setItem(CONSENT_KEY, level); } catch (err) {}
+      activateConsented(level);
+      hideBanner();
+    });
+
+    // Die Entscheidung muss jederzeit widerrufbar sein — Link im Footer.
+    document.addEventListener('click', function (e) {
+      var opener = e.target.closest('[data-consent-open]');
+      if (!opener) return;
+      e.preventDefault();
+      showBanner();
+    });
+
+    window.addEventListener('resize', function () {
+      if (!banner.hidden) measure();
+    }, { passive: true });
+  }
 })();

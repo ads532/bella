@@ -40,7 +40,9 @@ assets/
   css/style.css     komplettes Design-System (Tokens, Komponenten)
   js/main.js        Header, Menü, Scroll-Reveal, Zähler, IBAN kopieren
   img/              alle verwendeten Bilder
+  img/logos/        31 freigestellte Partner-Logos (aus der alten Logowand)
   img/_pool/        weitere Fotos aus dem Archiv der alten Seite (ungenutzt)
+  fonts/            Poppins, Inter, Cardo — lokal, keine Google-Verbindung
 
 serve.mjs           optionaler Dev-Server (Node)
 .github/workflows/  baut en/ bei jedem Push automatisch neu
@@ -128,6 +130,24 @@ Neben `data-i18n` (Inhalt) gibt es noch `data-i18n-content` (für Meta-Tags),
 
 ---
 
+## Datenschutz
+
+- **Schriften liegen lokal** in `assets/fonts/` — keine Verbindung zu Google
+  Fonts, es werden also keine IP-Adressen an Dritte übertragen (das war der
+  Streitpunkt im Urteil des LG München I, 3 O 17493/20).
+- **Keine externen Requests** beim Seitenaufruf. Donorbox, Instagram, LinkedIn
+  und Facebook sind reine Linkziele — dorthin geht erst etwas, wenn jemand
+  klickt.
+- **Keine Cookies.** Gespeichert wird ausschließlich die Antwort auf den
+  Einwilligungs-Banner (`localStorage`, Schlüssel `be-consent`). Das ist
+  technisch notwendig und einwilligungsfrei.
+- **Der Banner ist widerrufbar** über „Impostazioni privacy" im Footer —
+  Pflicht, sobald echtes Tracking dazukommt.
+
+Streng genommen wäre der Banner im jetzigen Zustand nicht vorgeschrieben. Er ist
+da, weil mit den geplanten Google-Ads-Kampagnen Conversion-Tracking kommt, und
+das braucht eine Einwilligung, bevor es lädt.
+
 ## Design-System
 
 Alle Werte stehen als CSS-Variablen ganz oben in `assets/css/style.css`.
@@ -155,9 +175,16 @@ feines SVG-Rauschen (`.grain`) über den Flächen; Animationen ausschließlich �
 - [ ] **Rechtstexte** — Privacy Policy, Cookie Policy und Credits verlinken noch
       auf die alte WordPress-Installation. Entweder dort belassen oder als eigene
       Seiten übernehmen.
-- [ ] **Cookie-Banner** — derzeit werden keine Tracking-Cookies gesetzt (nur
-      `localStorage` für die Sprachwahl, technisch notwendig). Sobald Analytics
-      dazukommt, ist ein Consent-Banner nötig.
+- [ ] **Analytics / Conversion-Tracking** — noch nicht eingebaut. Der
+      Einwilligungs-Banner ist bereits vorbereitet: Skripte, die erst nach
+      Zustimmung starten sollen, so einbinden:
+
+      ```html
+      <script type="text/plain" data-consent="marketing" src="..."></script>
+      ```
+
+      Sie werden aktiviert, sobald jemand „Accetta tutto" wählt. Zusätzlich
+      steht `window.beConsent` bereit und es feuert ein `be:consent`-Event.
 - [ ] **Donorbox** — der Button verlinkt auf
       `https://donorbox.org/join-the-bevolution`. Alternativ lässt sich das
       Donorbox-iframe direkt in `dona.html` einbetten.
