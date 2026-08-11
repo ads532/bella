@@ -283,41 +283,86 @@
     }, { passive: true });
   }
 
-  /* --- 12. Farbwelt-Umschalter (nur Vorschau) ------------------------------
-     Zwei abgestimmte Sets stehen zur Auswahl, siehe :root und
-     :root[data-theme="yellow"] in style.css. Der Umschalter sitzt im Kopf
-     neben der Sprachwahl und erscheint nur, wenn die URL ?preview oder
-     ?theme enthält — auf der Live-Seite bleibt er dadurch unsichtbar.
+  /* --- 12. Donorbox --------------------------------------------------------
+     Das Spendenformular kommt von donorbox.org. Damit beim blossen
+     Seitenaufruf keine IP-Adresse dorthin geht, laedt das Skript erst auf
+     Klick — oder automatisch, wenn im Banner bereits zugestimmt wurde.
      ---------------------------------------------------------------------- */
-  (function () {
-    var params = new URLSearchParams(location.search);
-    if (!params.has('preview') && !params.has('theme')) return;
+  var DBOX_CAMPAIGN = 'join-the-bevolution';
+  var dboxScriptLoaded = false;
 
-    var host = document.querySelector('.nav-tools');
-    var lang = document.querySelector('.nav-tools .lang');
-    if (!host) return;
+  function loadDboxScript() {
+    if (dboxScriptLoaded) return;
+    dboxScriptLoaded = true;
+    var s = document.createElement('script');
+    s.type = 'module';
+    s.src = 'https://donorbox.org/widgets.js';
+    s.async = true;
+    document.head.appendChild(s);
+  }
 
-    var active = document.documentElement.dataset.theme === 'yellow' ? 'yellow' : 'green';
-    var box = document.createElement('div');
-    box.className = 'theme-switch';
-    box.setAttribute('role', 'group');
-    box.setAttribute('aria-label', 'Farbwelt / Colour set');
+  function mountDbox(box) {
+    if (!box || box.classList.contains('is-loaded')) return;
+    box.classList.add('is-loaded');
+    var widget = document.createElement('dbox-widget');
+    widget.setAttribute('campaign', DBOX_CAMPAIGN);
+    widget.setAttribute('type', 'donation_form');
+    widget.setAttribute('enable-auto-scroll', 'true');
+    box.appendChild(widget);
+    loadDboxScript();
+  }
 
-    [['green', 'Grün, zurückhaltend'], ['yellow', 'Gelb, lebendig']].forEach(function (pair) {
-      var url = new URL(location.href);
-      url.searchParams.set('theme', pair[0]);
-      url.searchParams.set('preview', '1');
-      var a = document.createElement('a');
-      a.className = 'sw-' + pair[0];
-      a.href = url.pathname + url.search + url.hash;
-      a.title = pair[1];
-      a.setAttribute('aria-label', pair[1]);
-      if (pair[0] === active) a.setAttribute('aria-current', 'true');
-      box.appendChild(a);
+  document.addEventListener('click', function (e) {
+    var trigger = e.target.closest('[data-dbox-load]');
+    if (!trigger) return;
+    mountDbox(trigger.closest('[data-dbox]'));
+  });
+
+  // Wer im Banner bereits zugestimmt hat, bekommt das Formular direkt.
+  function autoMountIfConsented() {
+    if (readConsent() !== 'all') return;
+    document.querySelectorAll('[data-dbox]').forEach(function (box) {
+      if (!box.closest('[data-dbox-modal]')) mountDbox(box);
     });
+  }
+  autoMountIfConsented();
+  document.addEventListener('be:consent', autoMountIfConsented);
 
-    // direkt hinter die Sprachwahl, damit beide Schalter zusammen stehen
-    if (lang && lang.nextSibling) host.insertBefore(box, lang.nextSibling);
-    else host.appendChild(box);
-  })();
+  /* --- Spenden-Overlay ---------------------------------------------------- */
+  var dboxModal = document.querySelector('[data-dbox-modal]');
+  if (dboxModal) {
+    var lastFocus = null;
+    var openModal = function () {
+      lastFocus = document.activeElement;
+      dboxModal.hidden = false;
+      requestAnimationFrame(function () {
+        dboxModal.classList.add('is-open');
+        document.body.classList.add('is-locked');
+        var focusable = dboxModal.querySelector('button, a, input');
+        if (focusable) focusable.focus();
+      });
+      if (readConsent() === 'all') mountDbox(dboxModal.querySelector('[data-dbox]'));
+    };
+    var closeModal = function () {
+      dboxModal.classList.remove('is-open');
+      document.body.classList.remove('is-locked');
+      setTimeout(function () { dboxModal.hidden = true; }, 340);
+      if (lastFocus) lastFocus.focus();
+    };
+
+    document.addEventListener('click', function (e) {
+      var opener = e.target.closest('[data-dbox-open]');
+      if (opener) {
+        // Ohne JavaScript bleibt der Link auf dona.html als Rueckfallebene.
+        e.preventDefault();
+        openModal();
+        return;
+      }
+      if (e.target.closest('[data-dbox-close]') || e.target === dboxModal) closeModal();
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && dboxModal.classList.contains('is-open')) closeModal();
+    });
+  }
+
 })();

@@ -8,6 +8,7 @@
 <link rel="canonical" href="https://www.bellaesperanza.org/magazine.html">
 <link rel="alternate" hreflang="it" href="https://www.bellaesperanza.org/magazine.html">
 <link rel="alternate" hreflang="en" href="https://www.bellaesperanza.org/en/magazine.html">
+<link rel="alternate" hreflang="de" href="https://www.bellaesperanza.org/de/magazine.html">
 <link rel="alternate" hreflang="x-default" href="https://www.bellaesperanza.org/magazine.html">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://www.bellaesperanza.org/magazine.html">
@@ -15,22 +16,12 @@
 <meta property="og:description" content="Arte, moda, musica e sport al servizio dell'istruzione. Tutte le collaborazioni di Bella Esperanza.">
 <meta property="og:image" content="https://www.bellaesperanza.org/assets/img/mag-on.jpg">
 <meta property="og:locale" content="it_IT">
-<meta name="theme-color" content="#141312">
+<meta name="theme-color" content="#3B3B36">
 <link rel="icon" href="assets/img/favicon.png" sizes="any">
 <link rel="apple-touch-icon" href="assets/img/favicon.png">
 
-<link rel="preload" href="assets/fonts/poppins-800-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="assets/fonts/inter-var-latin.woff2" as="font" type="font/woff2" crossorigin>
-<script>
-/* Farbwelt aus der URL lesen (?theme=yellow). Steht bewusst inline im Kopf,
-   damit die Seite nicht kurz im falschen Set aufblitzt. */
-(function () {
-  try {
-    var t = new URLSearchParams(location.search).get('theme');
-    if (t === 'yellow' || t === 'green') document.documentElement.dataset.theme = t;
-  } catch (e) {}
-})();
-</script>
+<link rel="preload" href="assets/fonts/red-hat-display-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/red-hat-text-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="assets/css/style.css">
 
 <style>
@@ -52,7 +43,7 @@
   .article__meta {
     display: flex; flex-wrap: wrap; gap: var(--s-3);
     font-size: .72rem; letter-spacing: .14em; text-transform: uppercase;
-    font-weight: 700; color: var(--clay);
+    font-weight: 700; color: var(--sun);
     margin-bottom: var(--s-4);
   }
   .article__meta span:not(:first-child)::before { content: "· "; opacity: .5; }
@@ -83,8 +74,9 @@
         <div class="lang" role="group" aria-label="Lingua / Language">
           <span aria-current="true">IT</span>
           <a href="en/magazine.html" hreflang="en" lang="en">EN</a>
+          <a href="de/magazine.html" hreflang="de" lang="de">DE</a>
         </div>
-        <a class="btn btn--accent nav-cta" href="dona.html" data-i18n="nav.donate">Dona ora</a>
+        <a class="btn btn--accent nav-cta" href="dona.html" data-dbox-open data-i18n="nav.donate">Dona ora</a>
         <button class="burger" type="button" aria-expanded="false" aria-controls="drawer" aria-label="Menu"><span></span></button>
       </div>
     </nav>
@@ -102,7 +94,7 @@
       <li><a href="magazine.html"         data-i18n="nav.magazine">Magazine</a></li>
     </ul>
   </nav>
-  <a class="btn btn--accent btn--lg" href="dona.html" data-i18n="nav.donate">Dona ora</a>
+  <a class="btn btn--accent btn--lg" href="dona.html" data-dbox-open data-i18n="nav.donate">Dona ora</a>
 </div>
 
 <main id="main">
@@ -327,6 +319,33 @@
 <button class="to-top" type="button" data-to-top aria-label="Torna all'inizio" data-i18n-aria="ui.toTop">
   <svg width="18" height="18" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M8 13V3M4 7l4-4 4 4" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg>
 </button>
+
+
+<!-- =========================================== SPENDEN-OVERLAY (Donorbox) -->
+<div class="dbox-modal" data-dbox-modal hidden role="dialog" aria-modal="true" aria-labelledby="dbox-modal-title">
+  <div class="dbox-modal__panel">
+    <div class="dbox-modal__head">
+      <div>
+        <h2 id="dbox-modal-title" data-i18n="dbox.modalTitle">Dona ora</h2>
+        <p data-i18n="dbox.modalSub">Il 100% della tua donazione online finanzia la scuola.</p>
+      </div>
+      <button class="dbox-modal__close" type="button" data-dbox-close aria-label="Chiudi">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M4 4l8 8M12 4l-8 8" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/></svg>
+      </button>
+    </div>
+    <div class="dbox-modal__body">
+      <div class="dbox" data-dbox>
+        <div class="dbox__placeholder">
+          <p data-i18n="dbox.intro">Il modulo di donazione è fornito da Donorbox. Caricandolo, il tuo indirizzo IP viene trasmesso a Donorbox.</p>
+          <button class="btn btn--accent btn--lg" type="button" data-dbox-load>
+            <span data-i18n="dbox.load">Carica il modulo di donazione</span>
+          </button>
+          <small data-i18n="dbox.modalAlt">Preferisci il bonifico? Trovi gli IBAN sulla pagina Donazione.</small>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
 <script src="assets/js/main.js"></script>
 </body>

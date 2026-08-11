@@ -30,9 +30,10 @@ index.html          One-Pager mit allen Kerninhalten      ← bearbeiten
 dona.html           Spenden (Donorbox, IBAN, 5×1000)      ← bearbeiten
 magazine.html       BE Magazine — alle 6 Kooperationen    ← bearbeiten
 i18n/en.json        alle englischen Texte                 ← bearbeiten
+i18n/de.json        alle deutschen Texte                  ← bearbeiten
 build.py            erzeugt daraus die englische Fassung
 
-en/                 erzeugt — nicht von Hand ändern
+en/  de/            erzeugt — nicht von Hand ändern
   index.html  dona.html  magazine.html
 sitemap.xml         erzeugt
 
@@ -42,7 +43,7 @@ assets/
   img/              alle verwendeten Bilder
   img/logos/        31 freigestellte Partner-Logos (aus der alten Logowand)
   img/_pool/        weitere Fotos aus dem Archiv der alten Seite (ungenutzt)
-  fonts/            Poppins, Inter, Cardo — lokal, keine Google-Verbindung
+  fonts/            Red Hat Display + Text — lokal, keine Google-Verbindung
 
 serve.mjs           optionaler Dev-Server (Node)
 .github/workflows/  baut en/ bei jedem Push automatisch neu
@@ -64,7 +65,7 @@ Aussage. Die neue Struktur:
 | Connettiti | Sektion `#contatti` am Seitenende |
 
 Navigation: `La storia · Il progetto · Creatività · Come lavoriamo · Community ·
-Magazine` plus ein permanenter gelber **Dona ora**-Button. Keine Dropdowns mehr,
+Magazine` plus ein permanenter grüner **Dona ora**-Button. Keine Dropdowns mehr,
 auf Mobil ein Vollbild-Menü.
 
 Die Reihenfolge der Sektionen folgt bewusst der Spenden-Logik von charity: water:
@@ -74,27 +75,28 @@ die konkrete Lösung (die Schule), dann der Beweis für Vertrauen (zwei Konten,
 
 ---
 
-## Zweisprachigkeit (IT / EN)
+## Drei Sprachen (IT / EN / DE)
 
 Jede Sprache hat eigene, echte URLs — kein JavaScript-Umschalten:
 
-| | Italienisch | Englisch |
-|---|---|---|
-| Startseite | `/` | `/en/` |
-| Spenden | `/dona.html` | `/en/dona.html` |
-| Magazine | `/magazine.html` | `/en/magazine.html` |
+| | Italienisch | Englisch | Deutsch |
+|---|---|---|---|
+| Startseite | `/` | `/en/` | `/de/` |
+| Spenden | `/dona.html` | `/en/dona.html` | `/de/dona.html` |
+| Magazine | `/magazine.html` | `/en/magazine.html` | `/de/magazine.html` |
 
-Beide Fassungen sind vollwertige HTML-Seiten mit eigenem `<title>`, eigener
+Alle drei Fassungen sind vollwertige HTML-Seiten mit eigenem `<title>`, eigener
 Meta-Description, eigenem `canonical` und wechselseitigen `hreflang`-Angaben.
-Damit lassen sich englischsprachige **Google-Ads-Kampagnen direkt auf die
-englischen URLs** schalten, und Google kann beide Sprachen getrennt indexieren.
+Damit lassen sich fremdsprachige **Google-Ads-Kampagnen direkt auf die passenden
+URLs** schalten, und Google kann jede Sprache getrennt indexieren.
 
 ### Wie das zusammenhängt
 
-Italienisch ist die einzige Quelle. Die englischen Seiten werden daraus erzeugt:
+Italienisch ist die einzige Quelle. Die anderen Sprachen entstehen daraus:
 
 ```
 index.html  +  i18n/en.json   ──build.py──▶   en/index.html
+index.html  +  i18n/de.json   ──build.py──▶   de/index.html
 ```
 
 Verknüpft wird über Schlüssel im HTML:
@@ -110,9 +112,9 @@ Verknüpft wird über Schlüssel im HTML:
 ### Text ändern
 
 - **Italienisch** → direkt in `index.html` / `dona.html` / `magazine.html`
-- **Englisch** → in `i18n/en.json` beim passenden Schlüssel
+- **Englisch / Deutsch** → in `i18n/en.json` bzw. `i18n/de.json`
 - **Neuen Absatz anlegen** → im HTML mit `data-i18n="neuer.schlüssel"` auszeichnen
-  und denselben Schlüssel in `i18n/en.json` ergänzen
+  und denselben Schlüssel in beiden Wörterbüchern ergänzen
 
 Danach:
 
@@ -121,7 +123,7 @@ python3 build.py
 ```
 
 Das Skript meldet jeden Schlüssel, für den eine Übersetzung fehlt, und schreibt
-`en/` sowie `sitemap.xml` neu. **Wer es vergisst, dem passiert nichts:** Bei
+`en/`, `de/` sowie `sitemap.xml` neu. **Wer es vergisst, dem passiert nichts:** Bei
 jedem Push nach GitHub läuft derselbe Build automatisch als Action und schiebt
 das Ergebnis nach.
 
@@ -135,13 +137,15 @@ Neben `data-i18n` (Inhalt) gibt es noch `data-i18n-content` (für Meta-Tags),
 - **Schriften liegen lokal** in `assets/fonts/` — keine Verbindung zu Google
   Fonts, es werden also keine IP-Adressen an Dritte übertragen (das war der
   Streitpunkt im Urteil des LG München I, 3 O 17493/20).
-- **Keine externen Requests** beim Seitenaufruf. Donorbox, Instagram, LinkedIn
-  und Facebook sind reine Linkziele — dorthin geht erst etwas, wenn jemand
-  klickt.
+- **Keine externen Requests** beim Seitenaufruf. Instagram, LinkedIn und
+  Facebook sind reine Linkziele.
+- **Donorbox mit Zwei-Klick-Schutz.** Das Spendenformular liegt bei Donorbox.
+  Es lädt erst, wenn jemand darauf klickt — oder automatisch, wenn im Banner
+  bereits zugestimmt wurde. Ohne Klick geht keine IP-Adresse dorthin.
 - **Keine Cookies.** Gespeichert wird ausschließlich die Antwort auf den
   Einwilligungs-Banner (`localStorage`, Schlüssel `be-consent`). Das ist
   technisch notwendig und einwilligungsfrei.
-- **Der Banner ist widerrufbar** über „Impostazioni privacy" im Footer —
+- **Der Banner ist widerrufbar** über „Impostazioni privacy" / „Privatsphäre-Einstellungen" im Footer —
   Pflicht, sobald echtes Tracking dazukommt.
 
 Streng genommen wäre der Banner im jetzigen Zustand nicht vorgeschrieben. Er ist
@@ -152,13 +156,15 @@ das braucht eine Einwilligung, bevor es lädt.
 
 Alle Werte stehen als CSS-Variablen ganz oben in `assets/css/style.css`.
 
-**Farben** (aus dem bestehenden Brand-Kit der alten Seite übernommen):
-`#FECC4E` Gelb (primär) · `#F37932` Orange · `#F04C71` Pink · `#6B69B0` Violett ·
-`#72C594` Grün · `#00CEB4` Türkis · `#E91558` Magenta · `#141312` Tiefschwarz ·
-`#FBF7F1` Warmweiß
+**Farben** (Brand Book v0.6, Seite 13/14):
+`#4CC78F` Green hope (Leitfarbe) · `#3B3B36` Chalkboard gray · `#E3E7EA` Cloud
+white. Dazu abgeleitete Grüntöne `#34A473` und `#1E6B4A` sowie die
+Sekundärfarben `#FFD649` Sunflower yellow, `#6E67A8` Lavander violet und
+`#FF7325` Sunset orange, sparsam eingesetzt.
 
-**Schriften:** Poppins (Überschriften, Markenschrift) · Inter (Fließtext) ·
-Cardo kursiv (Zitate und Akzente)
+**Schriften** (Brand Book Seite 19): Red Hat Display für Überschriften,
+Red Hat Text für Fließtext. Beide als Variable Font, lokal ausgeliefert,
+zusammen 86 KB.
 
 Weitere Details: geschichtete, farbig getönte Schatten statt flacher Boxen; ein
 feines SVG-Rauschen (`.grain`) über den Flächen; Animationen ausschließlich über
@@ -170,8 +176,10 @@ feines SVG-Rauschen (`.grain`) über den Flächen; Animationen ausschließlich �
 
 - [ ] **Newsletter-Formular anbinden** — `<form data-demo-form>` in
       `index.html` (Sektion `#contatti`) zeigt aktuell nur eine Bestätigung.
-      `action` auf Mailchimp / Brevo / MailerLite setzen und `data-demo-form`
-      entfernen.
+      Der Verein nutzt noch keinen Dienst. Empfehlung MailerLite: EU-Server
+      wählbar, günstiger und einfacher zu bedienen als Mailchimp, im
+      kostenlosen Tarif bis 1.000 Kontakte ausreichend. Danach `action`
+      setzen und `data-demo-form` entfernen.
 - [ ] **Rechtstexte** — Privacy Policy, Cookie Policy und Credits verlinken noch
       auf die alte WordPress-Installation. Entweder dort belassen oder als eigene
       Seiten übernehmen.
@@ -185,11 +193,10 @@ feines SVG-Rauschen (`.grain`) über den Flächen; Animationen ausschließlich �
 
       Sie werden aktiviert, sobald jemand „Accetta tutto" wählt. Zusätzlich
       steht `window.beConsent` bereit und es feuert ein `be:consent`-Event.
-- [ ] **Donorbox** — der Button verlinkt auf
-      `https://donorbox.org/join-the-bevolution`. Alternativ lässt sich das
-      Donorbox-iframe direkt in `dona.html` einbetten.
-- [ ] **Spendenbeispiele auf `dona.html`** (25 € / 75 € / 250 €) sind Platzhalter
-      und sollten vom Verein mit echten Zahlen bestätigt werden.
+- [ ] **Team vervollständigen** — der Vorstand steht nach der Präsentation
+      2026. Für Mwende Mutinda, Paolo Pompermaier, Suor Helena, Alkaji
+      Construction und Studio Chiomenti fehlen noch Fotos; dort steht
+      vorerst eine Monogramm-Kachel. Alexandra bereitet eine Übersicht vor.
 - [ ] **Bildrechte** — alle Fotos stammen aus der Mediathek der bestehenden Seite
       (Fotograf:innen u. a. Mariana Arrieta, Max Tomasinelli). Für Fotos von
       Kindern die vorhandenen Einwilligungen prüfen.

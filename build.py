@@ -30,15 +30,19 @@ import re
 import sys
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
-OUT_DIR = os.path.join(ROOT, 'en')
 SITE = 'https://www.bellaesperanza.org'
 
-# Quelldatei -> (URL italienisch, URL englisch)
-PAGES = {
-    'index.html':    ('/',              '/en/'),
-    'dona.html':     ('/dona.html',     '/en/dona.html'),
-    'magazine.html': ('/magazine.html', '/en/magazine.html'),
+# Zielsprachen. Italienisch ist die Quelle und braucht keinen Eintrag.
+LANGS = {
+    'en': {'dict': 'i18n/en.json', 'label': 'EN', 'locale': 'en_GB'},
+    'de': {'dict': 'i18n/de.json', 'label': 'DE', 'locale': 'de_DE'},
 }
+
+PAGES = ['index.html', 'dona.html', 'magazine.html']
+
+def url_for(source, lang=None):
+    stem = '' if source == 'index.html' else source
+    return '/%s%s' % (lang + '/' if lang else '', stem)
 
 # data-i18n-<suffix> -> Zielattribut in der Ausgabe
 ATTR_TARGETS = {
@@ -135,35 +139,48 @@ def translate(html, words, source_name):
     return html, missing
 
 
-LANG_SWITCH_EN = '''<div class="lang" role="group" aria-label="Lingua / Language">
-          <a href="../%s" hreflang="it" lang="it">IT</a>
-          <span aria-current="true">EN</span>
-        </div>'''
+def lang_switch(source, active):
+    """Sprachwahl im Kopf: die aktive Sprache als <span>, die anderen als Links."""
+    items = []
+    for code in [None] + list(LANGS):
+        label = 'IT' if code is None else LANGS[code]['label']
+        if code == active:
+            items.append('          <span aria-current="true">%s</span>' % label)
+        else:
+            href = ('../' if active else '') + (code + '/' if code else '') + source
+            if code and active:
+                href = '../' + code + '/' + source
+            items.append('          <a href="%s" hreflang="%s" lang="%s">%s</a>'
+                         % (href, code or 'it', code or 'it', label))
+    return ('<div class="lang" role="group" aria-label="Lingua / Language">\n%s\n        </div>'
+            % '\n'.join(items))
 
 
-def build_page(source, words):
-    it_url, en_url = PAGES[source]
+def build_page(source, lang, words):
+    it_url = url_for(source)
+    tr_url = url_for(source, lang)
+    out_dir = os.path.join(ROOT, lang)
     html = open(os.path.join(ROOT, source), encoding='utf-8').read()
 
     html, missing = translate(html, words, source)
 
     # Sprache des Dokuments
-    html = html.replace('<html lang="it">', '<html lang="en">', 1)
+    html = html.replace('<html lang="it">', '<html lang="%s">' % lang, 1)
 
     # Pfade: die Seite liegt eine Ebene tiefer
     html = re.sub(r'((?:src|href)=")(assets/)', r'\1../\2', html)
 
-    # Sprachumschalter zeigt zurück auf die italienische Fassung
-    html = re.sub(r'<div class="lang".*?</div>', LANG_SWITCH_EN % source, html, flags=re.S)
+    # Sprachumschalter: aktive Sprache markiert, die anderen verlinkt
+    html = re.sub(r'<div class="lang".*?</div>', lang_switch(source, lang), html, flags=re.S)
 
     # Kanonische Adresse und Social-Angaben auf die englische URL drehen
     html = re.sub(r'<link rel="canonical" href="[^"]*">',
-                  '<link rel="canonical" href="%s%s">' % (SITE, en_url), html, count=1)
+                  '<link rel="canonical" href="%s%s">' % (SITE, tr_url), html, count=1)
     html = re.sub(r'<meta property="og:url" content="[^"]*">',
-                  '<meta property="og:url" content="%s%s">' % (SITE, en_url), html, count=1)
+                  '<meta property="og:url" content="%s%s">' % (SITE, tr_url), html, count=1)
     html = html.replace('<meta property="og:locale" content="it_IT">',
-                        '<meta property="og:locale" content="en_GB">\n'
-                        '<meta property="og:locale:alternate" content="it_IT">', 1)
+                        '<meta property="og:locale" content="%s">\n'
+                        '<meta property="og:locale:alternate" content="it_IT">' % LANGS[lang]['locale'], 1)
 
     # og:title und og:description tragen keine eigenen Schlüssel — sie
     # übernehmen den bereits übersetzten Seitentitel und die Beschreibung.
@@ -179,31 +196,38 @@ def build_page(source, words):
                                 % desc.group(1), html, count=1)
 
     # Hinweis für alle, die in den Quelltext schauen
-    html = html.replace('<head>',
-                        '<head>\n<!-- Automatisch erzeugt aus %s + i18n/en.json '
-                        '(python3 build.py). Nicht direkt bearbeiten. -->' % source, 1)
+    # hreflang je Sprache neu setzen
+    tags = ['<link rel="canonical" href="%s%s">' % (SITE, tr_url),
+            '<link rel="alternate" hreflang="it" href="%s%s">' % (SITE, it_url)]
+    for code in LANGS:
+        tags.append('<link rel="alternate" hreflang="%s" href="%s%s">' % (code, SITE, url_for(source, code)))
+    tags.append('<link rel="alternate" hreflang="x-default" href="%s%s">' % (SITE, it_url))
+    html = re.sub(r'<link rel="canonical"[^>]*>(?:\s*<link rel="alternate"[^>]*>)+',
+                  '\n'.join(tags), html, count=1)
 
-    os.makedirs(OUT_DIR, exist_ok=True)
-    target = os.path.join(OUT_DIR, source)
+    html = html.replace('<head>',
+                        '<head>\n<!-- Automatisch erzeugt aus %s + %s '
+                        '(python3 build.py). Nicht direkt bearbeiten. -->' % (source, LANGS[lang]['dict']), 1)
+
+    os.makedirs(out_dir, exist_ok=True)
+    target = os.path.join(out_dir, source)
     open(target, 'w', encoding='utf-8').write(html)
     return target, missing
 
 
 def build_sitemap():
     entries = []
-    for source, (it_url, en_url) in PAGES.items():
-        for url, other, lang, other_lang in (
-            (it_url, en_url, 'it', 'en'),
-            (en_url, it_url, 'en', 'it'),
-        ):
+    codes = [None] + list(LANGS)
+    for source in PAGES:
+        for code in codes:
+            alts = ''.join(
+                '\n    <xhtml:link rel="alternate" hreflang="%s" href="%s%s"/>'
+                % (other or 'it', SITE, url_for(source, other)) for other in codes)
             entries.append(
-                '  <url>\n'
-                '    <loc>{site}{url}</loc>\n'
-                '    <xhtml:link rel="alternate" hreflang="{lang}" href="{site}{url}"/>\n'
-                '    <xhtml:link rel="alternate" hreflang="{other_lang}" href="{site}{other}"/>\n'
-                '    <xhtml:link rel="alternate" hreflang="x-default" href="{site}{it}"/>\n'
-                '  </url>'.format(site=SITE, url=url, other=other, lang=lang,
-                                  other_lang=other_lang, it=it_url))
+                '  <url>\n    <loc>{site}{url}</loc>{alts}'
+                '\n    <xhtml:link rel="alternate" hreflang="x-default" href="{site}{it}"/>'
+                '\n  </url>'.format(site=SITE, url=url_for(source, code), alts=alts,
+                                    it=url_for(source)))
     xml = ('<?xml version="1.0" encoding="UTF-8"?>\n'
            '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"\n'
            '        xmlns:xhtml="http://www.w3.org/1999/xhtml">\n'
@@ -213,24 +237,30 @@ def build_sitemap():
 
 
 def main():
-    words = json.load(open(os.path.join(ROOT, 'i18n', 'en.json'), encoding='utf-8'))
-    all_missing = []
-
-    for source in PAGES:
-        target, missing = build_page(source, words)
-        all_missing += missing
-        print('  %-42s %6d Bytes' % (os.path.relpath(target, ROOT), os.path.getsize(target)))
+    all_missing = {}
+    for lang, cfg in LANGS.items():
+        path = os.path.join(ROOT, cfg['dict'])
+        if not os.path.exists(path):
+            print('  %s fehlt — Sprache %s uebersprungen' % (cfg['dict'], lang))
+            continue
+        words = json.load(open(path, encoding='utf-8'))
+        for source in PAGES:
+            target, missing = build_page(source, lang, words)
+            if missing:
+                all_missing.setdefault(lang, set()).update(missing)
+            print('  %-42s %6d Bytes' % (os.path.relpath(target, ROOT), os.path.getsize(target)))
 
     count = build_sitemap()
     print('  %-42s %6d URLs' % ('sitemap.xml', count))
 
     if all_missing:
-        print('\nFehlende Übersetzungen in i18n/en.json:')
-        for key in sorted(set(all_missing)):
-            print('  -', key)
+        for lang, keys in all_missing.items():
+            print('\nFehlende Uebersetzungen in %s:' % LANGS[lang]['dict'])
+            for key in sorted(keys):
+                print('  -', key)
         return 1
 
-    print('\nFertig. %d Schlüssel übersetzt.' % len(words))
+    print('\nFertig.')
     return 0
 
 

@@ -1,171 +1,109 @@
 /* ==========================================================================
    Bella Esperanza | BE — Design System
-   Brand palette taken from the existing brand kit (Elementor global colors).
-   Type: Poppins (display, brand) · Inter (body) · Cardo (editorial accent)
+   Farben und Schriften nach dem offiziellen Brand Book v0.6 (Oktober 2024).
+   Type: Red Hat Display (Ueberschriften) · Red Hat Text (Fliesstext)
    ========================================================================== */
 
 /* --------------------------------------------------------------------------
    0. Schriften — lokal ausgeliefert
-   Keine Verbindung zu Google-Servern: so gehen keine IP-Adressen der
-   Besucher an Dritte (DSGVO, vgl. LG München I, Urteil 3 O 17493/20).
-   Poppins, Inter und Cardo stehen unter der SIL Open Font License 1.1,
-   die Dateien liegen in assets/fonts/.
-   Inter ist eine Variable Font: eine Datei je Zeichensatz deckt alle
-   Strichstärken ab, daher font-weight: 100 900.
+   Red Hat Display ist im Brand Book (Seite 19) als Hausschrift festgelegt.
+   Red Hat Text stammt aus derselben Familie und ist fuer Fliesstext
+   gezeichnet, deshalb das Paar Display + Text.
+   Beide sind Variable Fonts: eine Datei je Zeichensatz deckt alle
+   Strichstaerken ab. Keine Verbindung zu Google-Servern, damit keine
+   IP-Adressen der Besucher an Dritte gehen (DSGVO, LG Muenchen I,
+   3 O 17493/20). SIL Open Font License 1.1.
    -------------------------------------------------------------------------- */
 @font-face {
-  font-family: "Inter";
+  font-family: "Red Hat Display";
   font-style: normal;
-  font-weight: 100 900;
+  font-weight: 300 900;
   font-display: swap;
-  src: url("../fonts/inter-var-latin.woff2") format("woff2");
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
-@font-face {
-  font-family: "Inter";
-  font-style: normal;
-  font-weight: 100 900;
-  font-display: swap;
-  src: url("../fonts/inter-var-latin-ext.woff2") format("woff2");
+  src: url("../fonts/red-hat-display-latin-ext.woff2") format("woff2");
   unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
 }
 @font-face {
-  font-family: "Poppins";
+  font-family: "Red Hat Display";
   font-style: normal;
-  font-weight: 600;
+  font-weight: 300 900;
   font-display: swap;
-  src: url("../fonts/poppins-600-normal-latin.woff2") format("woff2");
+  src: url("../fonts/red-hat-display-latin.woff2") format("woff2");
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 @font-face {
-  font-family: "Poppins";
+  font-family: "Red Hat Text";
   font-style: normal;
-  font-weight: 600;
+  font-weight: 300 700;
   font-display: swap;
-  src: url("../fonts/poppins-600-normal-latin-ext.woff2") format("woff2");
+  src: url("../fonts/red-hat-text-latin-ext.woff2") format("woff2");
   unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
 }
 @font-face {
-  font-family: "Poppins";
+  font-family: "Red Hat Text";
   font-style: normal;
-  font-weight: 700;
+  font-weight: 300 700;
   font-display: swap;
-  src: url("../fonts/poppins-700-normal-latin.woff2") format("woff2");
+  src: url("../fonts/red-hat-text-latin.woff2") format("woff2");
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
-@font-face {
-  font-family: "Poppins";
-  font-style: normal;
-  font-weight: 700;
-  font-display: swap;
-  src: url("../fonts/poppins-700-normal-latin-ext.woff2") format("woff2");
-  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
-}
-@font-face {
-  font-family: "Poppins";
-  font-style: normal;
-  font-weight: 800;
-  font-display: swap;
-  src: url("../fonts/poppins-800-normal-latin.woff2") format("woff2");
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
-@font-face {
-  font-family: "Poppins";
-  font-style: normal;
-  font-weight: 800;
-  font-display: swap;
-  src: url("../fonts/poppins-800-normal-latin-ext.woff2") format("woff2");
-  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
-}
-@font-face {
-  font-family: "Cardo";
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url("../fonts/cardo-400-normal-latin.woff2") format("woff2");
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
-@font-face {
-  font-family: "Cardo";
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url("../fonts/cardo-400-normal-latin-ext.woff2") format("woff2");
-  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
-}
-@font-face {
-  font-family: "Cardo";
-  font-style: italic;
-  font-weight: 400;
-  font-display: swap;
-  src: url("../fonts/cardo-400-italic-latin.woff2") format("woff2");
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
-@font-face {
-  font-family: "Cardo";
-  font-style: italic;
-  font-weight: 400;
-  font-display: swap;
-  src: url("../fonts/cardo-400-italic-latin-ext.woff2") format("woff2");
-  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
 }
 
 /* --------------------------------------------------------------------------
    1. Tokens
    -------------------------------------------------------------------------- */
 :root {
-  /* --- Farbwelt -----------------------------------------------------------
-     Zwei abgestimmte Sets. Gruen ist der Standard; Gelb laesst sich ueber
-     ?theme=yellow zuschalten (siehe assets/js/theme.js). Alle Farbwerte —
-     auch die Verlaeufe und Schatten — haengen an diesen Variablen, damit ein
-     Wechsel wirklich die ganze Seite erfasst.
+  /* --- Farbwelt nach Brand Book v0.6 -------------------------------------
+     Schluesselfarben Seite 13: Green hope, Chalkboard gray, Cloud white.
+     Die Sekundaerfarben (Seite 14) kommen sehr sparsam dazu — vor allem
+     dort, wo sie im Brand Book selbst stehen: Gelb fuer Art, Violett fuer
+     Music, Orange fuer Sport.
      -------------------------------------------------------------------- */
+  --accent:      #4CC78F;   /* Green hope — Leitfarbe                     */
+  --accent-d:    #34A473;   /* abgedunkelt, fuer Hover und zweite Ebene   */
+  --accent-deep: #1E6B4A;   /* Tannengruen, Text auf hellem Grund         */
+  --accent-soft: #A7E2C5;   /* aufgehellt, fuer Flaechen                  */
 
-  /* Set A — Gruen, zurueckhaltend (Standard) */
-  --accent:      #72C594;
-  --accent-d:    #4E9E72;
-  --accent-deep: #2C6247;
-  --accent-soft: #AEDCC3;
-  --clay:        #D9C0A0;
+  --sun:         #FFD649;   /* Sunflower yellow — Akzent, sparsam         */
+  --violet:      #6E67A8;   /* Lavander violet                            */
+  --sunset:      #FF7325;   /* Sunset orange                              */
 
-  --ink:       #141815;
-  --ink-2:     #1E2520;
-  --ink-3:     #414A44;
-  --mute:      #79827B;
-  --line:      #DEE4DC;
+  --ink:       #3B3B36;     /* Chalkboard gray                            */
+  --ink-2:     #2F2F2B;
+  --ink-3:     #5A5A52;
+  --mute:      #85857B;
+  --line:      #D4D9DC;
   --line-dark: rgba(255, 255, 255, .14);
-  --paper:     #FAFAF6;
-  --paper-2:   #EEF3EC;
+  --paper:     #F2F5F6;
+  --paper-2:   #E3E7EA;     /* Cloud white                                */
   --white:     #FFFFFF;
 
   --mesh-light:
-    radial-gradient(58% 46% at 12% 8%,  rgba(114, 197, 148, .26), transparent 62%),
-    radial-gradient(50% 44% at 88% 14%, rgba(174, 220, 195, .30), transparent 64%),
-    radial-gradient(64% 52% at 72% 92%, rgba(44, 98, 71, .10),    transparent 66%),
-    radial-gradient(44% 40% at 26% 88%, rgba(217, 192, 160, .18), transparent 62%);
+    radial-gradient(58% 46% at 12% 8%,  rgba(76, 199, 143, .22), transparent 62%),
+    radial-gradient(50% 44% at 88% 14%, rgba(167, 226, 197, .30), transparent 64%),
+    radial-gradient(64% 52% at 72% 92%, rgba(30, 107, 74, .09),  transparent 66%),
+    radial-gradient(44% 40% at 26% 88%, rgba(255, 214, 73, .12), transparent 62%);
   --mesh-dark:
-    radial-gradient(56% 44% at 10% 4%,  rgba(114, 197, 148, .16), transparent 62%),
-    radial-gradient(52% 46% at 92% 20%, rgba(78, 158, 114, .16),  transparent 64%),
-    radial-gradient(60% 50% at 70% 96%, rgba(217, 192, 160, .09), transparent 66%);
-  --tint-hero: linear-gradient(122deg, rgba(44, 98, 71, .34), rgba(78, 158, 114, .24) 55%, rgba(20, 24, 21, .22));
-  --tint-cta:  linear-gradient(200deg, rgba(44, 98, 71, .38), rgba(114, 197, 148, .22));
-  --tint-frame: linear-gradient(140deg, rgba(44, 98, 71, .30), rgba(114, 197, 148, .24));
-  --tint-post:  linear-gradient(150deg, rgba(114, 197, 148, .26), rgba(44, 98, 71, .22));
-  --ring: rgba(114, 197, 148, .40);
+    radial-gradient(56% 44% at 10% 4%,  rgba(76, 199, 143, .17), transparent 62%),
+    radial-gradient(52% 46% at 92% 20%, rgba(52, 164, 115, .15), transparent 64%),
+    radial-gradient(60% 50% at 70% 96%, rgba(255, 214, 73, .07), transparent 66%);
+  --tint-hero: linear-gradient(122deg, rgba(30, 107, 74, .36), rgba(52, 164, 115, .22) 55%, rgba(59, 59, 54, .24));
+  --tint-cta:  linear-gradient(200deg, rgba(30, 107, 74, .40), rgba(76, 199, 143, .20));
+  --tint-frame: linear-gradient(140deg, rgba(30, 107, 74, .30), rgba(76, 199, 143, .22));
+  --tint-post:  linear-gradient(150deg, rgba(76, 199, 143, .26), rgba(30, 107, 74, .22));
+  --ring: rgba(76, 199, 143, .42);
 
-  --tint-1: linear-gradient(150deg, rgba(114, 197, 148, .26), rgba(217, 192, 160, .20));
-  --tint-2: linear-gradient(150deg, rgba(44, 98, 71, .28),    rgba(174, 220, 195, .22));
-  --tint-3: linear-gradient(150deg, rgba(78, 158, 114, .26),  rgba(44, 98, 71, .20));
-  --tint-4: linear-gradient(150deg, rgba(174, 220, 195, .30), rgba(114, 197, 148, .20));
-  --tint-5: linear-gradient(150deg, rgba(217, 192, 160, .24), rgba(44, 98, 71, .22));
-  --tint-6: linear-gradient(150deg, rgba(114, 197, 148, .26), rgba(78, 158, 114, .22));
-  --tint-7: linear-gradient(150deg, rgba(174, 220, 195, .28), rgba(114, 197, 148, .22));
-  --tint-8: linear-gradient(150deg, rgba(217, 192, 160, .26), rgba(44, 98, 71, .22));
-  --tint-9: linear-gradient(150deg, rgba(114, 197, 148, .26), rgba(78, 158, 114, .22));
+  --tint-1: linear-gradient(150deg, rgba(76, 199, 143, .26), rgba(255, 214, 73, .16));
+  --tint-2: linear-gradient(150deg, rgba(30, 107, 74, .28),  rgba(167, 226, 197, .22));
+  --tint-3: linear-gradient(150deg, rgba(52, 164, 115, .26), rgba(30, 107, 74, .20));
+  --tint-4: linear-gradient(150deg, rgba(167, 226, 197, .30), rgba(76, 199, 143, .20));
+  --tint-5: linear-gradient(150deg, rgba(110, 103, 168, .20), rgba(30, 107, 74, .24));
+  --tint-6: linear-gradient(150deg, rgba(76, 199, 143, .26), rgba(52, 164, 115, .22));
+  --tint-7: linear-gradient(150deg, rgba(167, 226, 197, .28), rgba(76, 199, 143, .22));
+  --tint-8: linear-gradient(150deg, rgba(255, 115, 37, .16),  rgba(30, 107, 74, .26));
+  --tint-9: linear-gradient(150deg, rgba(76, 199, 143, .26), rgba(52, 164, 115, .22));
 
   --sh-warm:
-    0 10px 24px -10px rgba(44, 98, 71, .26),
-    0 30px 60px -28px rgba(44, 98, 71, .20);
+    0 10px 24px -10px rgba(30, 107, 74, .24),
+    0 30px 60px -28px rgba(30, 107, 74, .18);
 
   /* --- semantic --------------------------------------------------------- */
   --bg:        var(--paper);
@@ -220,56 +158,6 @@
 }
 
 /* --------------------------------------------------------------------------
-   1b. Set B — Gelb, lebendiger (?theme=yellow)
-   Entspricht der urspruenglichen Fassung: Gelb als Leitfarbe, dazu Orange,
-   Pink und Violett als Akzente auf warmem Creme.
-   -------------------------------------------------------------------------- */
-:root[data-theme="yellow"] {
-  --accent:      #FECC4E;
-  --accent-d:    #F37932;
-  --accent-deep: #B85E15;
-  --accent-soft: #F04C71;
-  --clay:        #6B69B0;
-
-  --ink:       #141312;
-  --ink-2:     #24211E;
-  --ink-3:     #44433F;
-  --mute:      #7A756E;
-  --line:      #E3DBCF;
-  --paper:     #FBF7F1;
-  --paper-2:   #F3EBDF;
-
-  --mesh-light:
-    radial-gradient(58% 46% at 12% 8%,  rgba(254, 204, 78, .34), transparent 62%),
-    radial-gradient(50% 44% at 88% 14%, rgba(240, 76, 113, .22), transparent 64%),
-    radial-gradient(64% 52% at 72% 92%, rgba(107, 105, 176, .20), transparent 66%),
-    radial-gradient(44% 40% at 26% 88%, rgba(114, 197, 148, .22), transparent 62%);
-  --mesh-dark:
-    radial-gradient(56% 44% at 10% 4%,  rgba(254, 204, 78, .20), transparent 62%),
-    radial-gradient(52% 46% at 92% 20%, rgba(233, 21, 88, .18),  transparent 64%),
-    radial-gradient(60% 50% at 70% 96%, rgba(0, 206, 180, .14),  transparent 66%);
-  --tint-hero: linear-gradient(122deg, rgba(243, 121, 50, .30), rgba(107, 105, 176, .26) 55%, rgba(0, 206, 180, .18));
-  --tint-cta:  linear-gradient(200deg, rgba(243, 121, 50, .35), rgba(107, 105, 176, .30));
-  --tint-frame: linear-gradient(140deg, rgba(243, 121, 50, .35), rgba(107, 105, 176, .30));
-  --tint-post:  linear-gradient(150deg, rgba(254, 204, 78, .28), rgba(240, 76, 113, .20));
-  --ring: rgba(254, 204, 78, .45);
-
-  --tint-1: linear-gradient(150deg, rgba(254, 204, 78, .30), rgba(243, 121, 50, .25));
-  --tint-2: linear-gradient(150deg, rgba(107, 105, 176, .30), rgba(240, 76, 113, .25));
-  --tint-3: linear-gradient(150deg, rgba(0, 206, 180, .26),   rgba(107, 105, 176, .22));
-  --tint-4: linear-gradient(150deg, rgba(240, 76, 113, .28),  rgba(254, 204, 78, .22));
-  --tint-5: linear-gradient(150deg, rgba(233, 21, 88, .26),   rgba(107, 105, 176, .22));
-  --tint-6: linear-gradient(150deg, rgba(114, 197, 148, .26), rgba(0, 206, 180, .22));
-  --tint-7: linear-gradient(150deg, rgba(240, 76, 113, .28),  rgba(254, 204, 78, .22));
-  --tint-8: linear-gradient(150deg, rgba(243, 121, 50, .26),  rgba(107, 105, 176, .22));
-  --tint-9: linear-gradient(150deg, rgba(0, 206, 180, .26),   rgba(114, 197, 148, .22));
-
-  --sh-warm:
-    0 10px 24px -10px rgba(243, 121, 50, .32),
-    0 30px 60px -28px rgba(240, 76, 113, .28);
-}
-
-/* --------------------------------------------------------------------------
    2. Reset & base
    -------------------------------------------------------------------------- */
 *, *::before, *::after { box-sizing: border-box; }
@@ -284,7 +172,7 @@ body {
   margin: 0;
   background: var(--bg);
   color: var(--fg);
-  font-family: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  font-family: "Red Hat Text", system-ui, -apple-system, "Segoe UI", sans-serif;
   font-size: clamp(1rem, .96rem + .18vw, 1.0625rem);
   line-height: 1.7;
   font-weight: 400;
@@ -299,7 +187,7 @@ body.is-locked { overflow: hidden; }
 img, svg, video { display: block; max-width: 100%; height: auto; }
 
 h1, h2, h3, h4 {
-  font-family: "Poppins", system-ui, sans-serif;
+  font-family: "Red Hat Display", system-ui, sans-serif;
   font-weight: 800;
   line-height: 1.02;
   letter-spacing: -.035em;
@@ -399,7 +287,7 @@ strong, b { font-weight: 700; }
    -------------------------------------------------------------------------- */
 .eyebrow {
   display: inline-flex; align-items: center; gap: .55em;
-  font-family: "Inter", sans-serif;
+  font-family: "Red Hat Text", sans-serif;
   font-size: .78rem;
   font-weight: 600;
   letter-spacing: .16em;
@@ -433,8 +321,8 @@ strong, b { font-weight: 700; }
 .section--dark .lede { color: rgba(250, 250, 246, .78); }
 
 .serif {
-  font-family: "Cardo", Georgia, serif;
-  font-style: italic;
+  font-family: "Red Hat Display", Georgia, serif;
+  font-style: normal;
   font-weight: 400;
   letter-spacing: -.01em;
 }
@@ -459,7 +347,7 @@ strong, b { font-weight: 700; }
   border-radius: var(--r-pill);
   background: var(--btn-bg);
   color: var(--btn-fg);
-  font-family: "Inter", sans-serif;
+  font-family: "Red Hat Text", sans-serif;
   font-size: .92rem;
   font-weight: 600;
   letter-spacing: .015em;
@@ -616,7 +504,7 @@ strong, b { font-weight: 700; }
 .lang a,
 .lang span {
   display: block;
-  font-family: "Inter", sans-serif;
+  font-family: "Red Hat Text", sans-serif;
   font-size: .74rem; font-weight: 700; letter-spacing: .08em;
   color: rgba(255, 255, 255, .72);
   padding: .35em .7em;
@@ -682,7 +570,7 @@ strong, b { font-weight: 700; }
 .drawer ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; }
 .drawer a {
   display: block;
-  font-family: "Poppins", sans-serif;
+  font-family: "Red Hat Display", sans-serif;
   font-size: clamp(1.75rem, 8vw, 2.5rem);
   font-weight: 800; letter-spacing: -.035em;
   text-decoration: none;
@@ -750,12 +638,13 @@ strong, b { font-weight: 700; }
 .hero__stat { color: var(--white); }
 .hero__stat b {
   display: block;
-  font-family: "Poppins", sans-serif;
+  font-family: "Red Hat Display", sans-serif;
   font-size: clamp(1.9rem, 3.4vw, 2.9rem);
   font-weight: 800; letter-spacing: -.04em; line-height: 1;
   color: var(--accent);
 }
-.hero__stat span {
+/* nur die Beschriftung, nicht die Zahl im <b> darueber */
+.hero__stat > span {
   display: block; margin-top: .3em;
   font-size: .8rem; font-weight: 500;
   letter-spacing: .1em; text-transform: uppercase;
@@ -803,7 +692,7 @@ strong, b { font-weight: 700; }
 .marquee__group {
   display: flex; align-items: center; gap: clamp(1.5rem, 4vw, 3.25rem);
   padding-right: clamp(1.5rem, 4vw, 3.25rem);
-  font-family: "Poppins", sans-serif;
+  font-family: "Red Hat Display", sans-serif;
   font-weight: 800;
   font-size: clamp(1rem, 2vw, 1.5rem);
   letter-spacing: -.02em;
@@ -850,7 +739,7 @@ strong, b { font-weight: 700; }
   border-radius: var(--r-pill);
   background: var(--card-accent, var(--accent));
   color: var(--ink);
-  font-family: "Poppins", sans-serif;
+  font-family: "Red Hat Display", sans-serif;
   font-weight: 800; font-size: .95rem;
   margin-bottom: var(--s-4);
 }
@@ -894,7 +783,7 @@ a.frame:hover img, .frame--hover:hover img { transform: scale(1.045); }
 }
 .frame__cap b {
   display: block;
-  font-family: "Poppins", sans-serif;
+  font-family: "Red Hat Display", sans-serif;
   font-size: 1.05rem; font-weight: 800; letter-spacing: -.02em;
   margin-bottom: .15em;
 }
@@ -935,7 +824,7 @@ a.frame:hover img, .frame--hover:hover img { transform: scale(1.045); }
 .stat__pre { font-size: .84rem; letter-spacing: .1em; text-transform: uppercase; color: rgba(250, 250, 246, .55); margin-bottom: .35em; }
 .section:not(.section--dark) .stat__pre { color: var(--mute); }
 .stat__val {
-  font-family: "Poppins", sans-serif;
+  font-family: "Red Hat Display", sans-serif;
   font-size: clamp(3.6rem, 10vw, 7.5rem);
   font-weight: 800; letter-spacing: -.055em; line-height: .86;
   color: var(--stat-color, var(--accent));
@@ -975,7 +864,7 @@ a.frame:hover img, .frame--hover:hover img { transform: scale(1.045); }
 }
 .pillar__label b {
   display: block;
-  font-family: "Poppins", sans-serif;
+  font-family: "Red Hat Display", sans-serif;
   font-size: clamp(1.5rem, 3vw, 2.1rem);
   font-weight: 800; letter-spacing: -.04em;
 }
@@ -996,7 +885,7 @@ a.frame:hover img, .frame--hover:hover img { transform: scale(1.045); }
   transition: transform var(--t-fast) var(--ease-spring), box-shadow var(--t-mid) var(--ease-out);
 }
 .facilities li:hover { transform: translateY(-2px); box-shadow: var(--sh-2); }
-.facilities li b { font-family: "Poppins", sans-serif; font-weight: 800; color: var(--accent-deep); }
+.facilities li b { font-family: "Red Hat Display", sans-serif; font-weight: 800; color: var(--accent-deep); }
 /* white pills keep dark text even inside dark sections */
 .section--dark .facilities li { color: var(--ink); }
 
@@ -1004,7 +893,7 @@ a.frame:hover img, .frame--hover:hover img { transform: scale(1.045); }
    13. Timeline (volunteering artists)
    -------------------------------------------------------------------------- */
 .tl-year {
-  font-family: "Poppins", sans-serif;
+  font-family: "Red Hat Display", sans-serif;
   font-size: clamp(2.75rem, 7vw, 5rem);
   font-weight: 800; letter-spacing: -.05em; line-height: 1;
   color: transparent;
@@ -1045,7 +934,7 @@ a.frame:hover img, .frame--hover:hover img { transform: scale(1.045); }
 .value:hover { transform: translateY(-3px); box-shadow: var(--sh-2); }
 .value b {
   display: block;
-  font-family: "Poppins", sans-serif;
+  font-family: "Red Hat Display", sans-serif;
   font-size: .78rem; font-weight: 800;
   letter-spacing: .14em; text-transform: uppercase;
   color: var(--v-accent, var(--accent-deep));
@@ -1088,7 +977,7 @@ a.frame:hover img, .frame--hover:hover img { transform: scale(1.045); }
   display: inline-flex; align-items: center; gap: .5em;
   border: 0; cursor: pointer;
   background: transparent;
-  font-family: "Inter", sans-serif; font-size: .82rem; font-weight: 600;
+  font-family: "Red Hat Text", sans-serif; font-size: .82rem; font-weight: 600;
   color: inherit;
   padding: .5em .9em; border-radius: var(--r-pill);
   box-shadow: inset 0 0 0 1.5px currentColor;
@@ -1130,7 +1019,7 @@ a.frame:hover img, .frame--hover:hover img { transform: scale(1.045); }
 .quote:hover { transform: translateY(-4px); box-shadow: var(--sh-2); }
 .section--dark .quote { background: rgba(255, 255, 255, .05); box-shadow: inset 0 0 0 1px var(--line-dark); }
 .quote__mark {
-  font-family: "Cardo", serif; font-style: italic;
+  font-family: "Red Hat Display", serif;
   font-size: 3.4rem; line-height: .6; color: var(--q-accent, var(--accent));
   margin-bottom: var(--s-3);
 }
@@ -1146,7 +1035,7 @@ a.frame:hover img, .frame--hover:hover img { transform: scale(1.045); }
   filter: grayscale(1); transition: filter var(--t-mid) var(--ease-out);
 }
 .quote:hover .quote__by img { filter: grayscale(0); }
-.quote__by b { display: block; font-family: "Poppins", sans-serif; font-size: .95rem; font-weight: 700; letter-spacing: -.015em; }
+.quote__by b { display: block; font-family: "Red Hat Display", sans-serif; font-size: .95rem; font-weight: 700; letter-spacing: -.015em; }
 .quote__by span { display: block; font-size: .78rem; color: var(--mute); }
 .section--dark .quote__by span { color: rgba(250, 250, 246, .55); }
 
@@ -1249,7 +1138,7 @@ a.frame:hover img, .frame--hover:hover img { transform: scale(1.045); }
   border-radius: var(--r-pill);
   border: 1.5px solid var(--line);
   background: var(--white);
-  font-family: "Inter", sans-serif; font-size: .95rem; color: var(--ink);
+  font-family: "Red Hat Text", sans-serif; font-size: .95rem; color: var(--ink);
   transition: border-color var(--t-fast) var(--ease-out), box-shadow var(--t-fast) var(--ease-out);
 }
 .field::placeholder { color: var(--mute); }
@@ -1382,7 +1271,7 @@ a.frame:hover img, .frame--hover:hover img { transform: scale(1.045); }
 .consent__text { flex: 1 1 460px; font-size: .9rem; line-height: 1.62; }
 .consent__text b {
   display: block;
-  font-family: "Poppins", sans-serif;
+  font-family: "Red Hat Display", sans-serif;
   font-size: 1.05rem; font-weight: 800; letter-spacing: -.025em;
   color: var(--white);
   margin-bottom: .35em;
@@ -1441,35 +1330,6 @@ a.frame:hover img, .frame--hover:hover img { transform: scale(1.045); }
 }
 
 /* --------------------------------------------------------------------------
-   27. Farbwelt-Umschalter (nur Vorschau)
-   Sitzt im Kopf neben der Sprachwahl und erscheint ausschliesslich, wenn die
-   URL ?preview oder ?theme enthaelt. Auf der spaeteren Live-Seite ist er
-   dadurch unsichtbar, ohne dass etwas entfernt werden muss.
-   -------------------------------------------------------------------------- */
-.theme-switch {
-  display: inline-flex; align-items: center; gap: 4px;
-  padding: 4px;
-  border-radius: var(--r-pill);
-  background: rgba(255, 255, 255, .16);
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
-}
-.is-stuck .theme-switch { background: rgba(20, 24, 21, .07); }
-.theme-switch a {
-  width: 20px; height: 20px;
-  border-radius: var(--r-pill);
-  display: block;
-  box-shadow: inset 0 0 0 1.5px rgba(255, 255, 255, .35);
-  transition: transform var(--t-fast) var(--ease-spring), box-shadow var(--t-fast) var(--ease-out);
-}
-.is-stuck .theme-switch a { box-shadow: inset 0 0 0 1.5px rgba(20, 24, 21, .18); }
-.theme-switch a:hover { transform: scale(1.15); }
-.theme-switch a[aria-current="true"] { box-shadow: 0 0 0 2px var(--white), 0 0 0 3.5px rgba(20, 24, 21, .35); }
-.is-stuck .theme-switch a[aria-current="true"] { box-shadow: 0 0 0 2px var(--ink); }
-.theme-switch .sw-green  { background: linear-gradient(135deg, #72C594, #2C6247); }
-.theme-switch .sw-yellow { background: linear-gradient(135deg, #FECC4E, #F04C71); }
-
-/* --------------------------------------------------------------------------
    28. Freiwilligen-Raster
    -------------------------------------------------------------------------- */
 .crew {
@@ -1494,8 +1354,94 @@ a.frame:hover img, .frame--hover:hover img { transform: scale(1.045); }
 .crew li:hover img { filter: none; transform: translateY(-4px); box-shadow: var(--sh-2); }
 .crew figcaption {
   margin-top: var(--s-3);
-  font-family: "Poppins", sans-serif;
+  font-family: "Red Hat Display", sans-serif;
   font-size: .84rem; font-weight: 700; letter-spacing: -.015em;
   line-height: 1.25;
 }
 @media (max-width: 520px) { .crew { grid-template-columns: repeat(auto-fill, minmax(96px, 1fr)); } }
+
+/* --------------------------------------------------------------------------
+   27. Donorbox — Einbettung mit Zwei-Klick-Schutz
+   Das Widget laedt von donorbox.org. Damit beim blossen Seitenaufruf keine
+   IP-Adresse dorthin geht, wird zuerst ein Platzhalter gezeigt; das Skript
+   startet erst auf Klick — oder sofort, wenn im Banner bereits zugestimmt
+   wurde.
+   -------------------------------------------------------------------------- */
+.dbox {
+  position: relative;
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  background: var(--white);
+  box-shadow: var(--sh-2);
+  min-height: 420px;
+}
+.section--dark .dbox { background: rgba(255, 255, 255, .05); box-shadow: inset 0 0 0 1px var(--line-dark); }
+.dbox__placeholder {
+  display: grid; place-items: center; gap: var(--s-4);
+  text-align: center;
+  padding: clamp(2rem, 5vw, 3.5rem);
+  min-height: 420px;
+}
+.dbox__placeholder p { font-size: .92rem; color: var(--ink-3); max-width: 40ch; margin: 0; }
+.dbox__placeholder small { font-size: .78rem; color: var(--mute); max-width: 44ch; }
+.dbox.is-loaded .dbox__placeholder { display: none; }
+.dbox dbox-widget { display: block; min-height: 420px; }
+
+/* --- Spenden-Overlay ------------------------------------------------------ */
+.dbox-modal {
+  position: fixed; inset: 0; z-index: 140;
+  display: grid; place-items: center;
+  padding: var(--gutter);
+  background: rgba(47, 47, 43, .62);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  opacity: 0; visibility: hidden;
+  transition: opacity var(--t-mid) var(--ease-out), visibility var(--t-mid);
+}
+.dbox-modal.is-open { opacity: 1; visibility: visible; }
+.dbox-modal__panel {
+  position: relative;
+  width: min(560px, 100%);
+  max-height: min(88vh, 900px);
+  overflow-y: auto;
+  border-radius: var(--r-lg);
+  background: var(--paper);
+  box-shadow: var(--sh-3);
+  transform: translateY(18px) scale(.98);
+  transition: transform var(--t-mid) var(--ease-spring);
+}
+.dbox-modal.is-open .dbox-modal__panel { transform: none; }
+.dbox-modal__head {
+  display: flex; align-items: flex-start; justify-content: space-between;
+  gap: var(--s-4);
+  padding: var(--s-5) var(--s-5) 0;
+}
+.dbox-modal__head h2 { font-size: 1.35rem; margin: 0; }
+.dbox-modal__head p { font-size: .88rem; color: var(--ink-3); margin: .35em 0 0; }
+.dbox-modal__close {
+  flex: 0 0 auto;
+  width: 38px; height: 38px; border: 0; border-radius: var(--r-pill);
+  background: rgba(59, 59, 54, .08); color: var(--ink);
+  cursor: pointer; display: grid; place-items: center;
+  transition: background-color var(--t-fast) var(--ease-out), transform var(--t-fast) var(--ease-spring);
+}
+.dbox-modal__close:hover { background: rgba(59, 59, 54, .16); transform: rotate(90deg); }
+.dbox-modal__body { padding: var(--s-5); }
+.dbox-modal__body .dbox { box-shadow: none; min-height: 380px; }
+
+/* --------------------------------------------------------------------------
+   29. Monogramm-Kachel
+   Steht dort, wo noch kein Portraet vorliegt. Sobald ein Bild da ist, wird
+   die Kachel einfach durch ein <img> ersetzt.
+   -------------------------------------------------------------------------- */
+.monogram {
+  display: grid; place-items: center;
+  width: 100%; height: 100%;
+  background: linear-gradient(150deg, var(--accent-soft), var(--accent));
+  color: var(--accent-deep);
+  font-family: "Red Hat Display", sans-serif;
+  font-weight: 800;
+  font-size: clamp(1.75rem, 4vw, 2.6rem);
+  letter-spacing: -.04em;
+}
+.person--partner .monogram { background: linear-gradient(150deg, var(--paper-2), var(--line)); color: var(--ink-3); }
