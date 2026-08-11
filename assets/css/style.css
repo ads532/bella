@@ -697,6 +697,37 @@ strong, b { font-weight: 700; }
 @media (max-width: 760px) { .scroll-cue { display: none; } }
 
 /* --------------------------------------------------------------------------
+   7b. Hero rechtsbuendig (?layout=right)
+   Spiegelbild der Standardfassung: Text und Spendenbox rechts, die
+   Kennzahlen links daneben. Wird ueber ein Inline-Skript im Kopf gesetzt.
+   -------------------------------------------------------------------------- */
+:root[data-layout="right"] .hero__inner { text-align: right; }
+:root[data-layout="right"] .hero h1,
+:root[data-layout="right"] .hero .lede { margin-left: auto; }
+
+/* Der Strich der Rubrik muss auf die andere Seite wandern */
+:root[data-layout="right"] .hero .eyebrow { flex-direction: row-reverse; }
+
+:root[data-layout="right"] .hero__foot {
+  grid-template-columns: minmax(0, 1fr) auto;
+  justify-items: end;
+}
+/* Reihenfolge tauschen: Kennzahlen links, Box ganz aussen rechts */
+:root[data-layout="right"] .hero__stats { order: 1; align-items: flex-end; }
+:root[data-layout="right"] .give { order: 2; }
+:root[data-layout="right"] .give { text-align: left; }
+:root[data-layout="right"] .hero__media img { object-position: 34% 40%; }
+:root[data-layout="right"] .hero__media::after {
+  background: linear-gradient(238deg, rgba(30, 107, 74, .36), rgba(52, 164, 115, .22) 55%, rgba(59, 59, 54, .24));
+}
+:root[data-layout="right"] .scroll-cue { right: auto; left: var(--gutter); }
+
+@media (max-width: 860px) {
+  :root[data-layout="right"] .hero__foot { grid-template-columns: minmax(0, 1fr); justify-items: stretch; }
+  :root[data-layout="right"] .hero__stats { align-items: flex-start; }
+}
+
+/* --------------------------------------------------------------------------
    8. Marquee
    -------------------------------------------------------------------------- */
 .marquee {
