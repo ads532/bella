@@ -1361,6 +1361,189 @@ a.frame:hover img, .frame--hover:hover img { transform: scale(1.045); }
 @media (max-width: 520px) { .crew { grid-template-columns: repeat(auto-fill, minmax(96px, 1fr)); } }
 
 /* --------------------------------------------------------------------------
+   27. Spenden — Auswahlbox und Donorbox-Einbettung
+   Die Auswahl im Hero ist unsere eigene, damit die Startseite schnell bleibt
+   und nichts an Dritte geht. Erst beim Klick oeffnet sich das Donorbox-
+   Formular als iframe, mit Betrag, Intervall und Sprache vorbelegt.
+   -------------------------------------------------------------------------- */
+.give {
+  background: var(--white);
+  border-radius: var(--r-lg);
+  padding: clamp(1.15rem, 2.2vw, 1.6rem);
+  box-shadow: var(--sh-3);
+  width: min(420px, 100%);
+}
+.give__toggle {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 4px; padding: 4px;
+  background: var(--paper-2);
+  border-radius: var(--r-pill);
+  margin-bottom: var(--s-4);
+}
+.give__toggle button {
+  border: 0; cursor: pointer;
+  background: transparent;
+  font-family: "Red Hat Text", sans-serif;
+  font-size: .85rem; font-weight: 600;
+  color: var(--ink-3);
+  padding: .6em 1em;
+  border-radius: var(--r-pill);
+  transition: background-color var(--t-fast) var(--ease-out), color var(--t-fast) var(--ease-out);
+}
+.give__toggle button:hover { color: var(--ink); }
+.give__toggle button[aria-pressed="true"] {
+  background: var(--accent); color: var(--ink);
+  box-shadow: 0 1px 2px rgba(30, 107, 74, .18);
+}
+.give__label {
+  font-size: .7rem; font-weight: 700;
+  letter-spacing: .13em; text-transform: uppercase;
+  color: var(--mute);
+  margin: 0 0 var(--s-3);
+}
+.give__amounts {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--s-2);
+  margin-bottom: var(--s-4);
+}
+.give__amounts button,
+.give__amounts .give__custom {
+  border: 1.5px solid var(--line);
+  background: var(--white);
+  border-radius: var(--r-md);
+  padding: .75em .5em;
+  font-family: "Red Hat Display", sans-serif;
+  font-size: 1rem; font-weight: 700;
+  color: var(--ink);
+  cursor: pointer;
+  transition:
+    border-color var(--t-fast) var(--ease-out),
+    background-color var(--t-fast) var(--ease-out),
+    transform var(--t-fast) var(--ease-spring);
+}
+.give__amounts button:hover { border-color: var(--accent-d); transform: translateY(-1px); }
+.give__amounts button[aria-pressed="true"] {
+  background: var(--accent); border-color: var(--accent);
+  color: var(--ink);
+}
+.give__custom {
+  grid-column: 1 / -1;
+  width: 100%;
+  font-size: .95rem; font-weight: 600;
+  text-align: center;
+  -moz-appearance: textfield;
+}
+.give__custom::-webkit-outer-spin-button,
+.give__custom::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+.give__custom::placeholder { color: var(--mute); font-weight: 500; }
+.give__custom:focus { outline: 0; border-color: var(--accent-d); box-shadow: 0 0 0 4px var(--ring); }
+.give .btn { width: 100%; }
+.give__note {
+  margin: var(--s-3) 0 0;
+  font-size: .78rem; line-height: 1.5; color: var(--mute);
+  text-align: center;
+}
+@media (max-width: 420px) { .give__amounts { grid-template-columns: repeat(2, 1fr); } }
+
+/* --- Einbettung auf der Spendenseite ------------------------------------- */
+.dbox {
+  position: relative;
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  background: var(--white);
+  box-shadow: var(--sh-2);
+  min-height: 480px;
+}
+.section--dark .dbox { background: rgba(255, 255, 255, .05); box-shadow: inset 0 0 0 1px var(--line-dark); }
+.dbox__placeholder {
+  display: grid; place-items: center; gap: var(--s-4);
+  text-align: center;
+  padding: clamp(2rem, 5vw, 3.5rem);
+  min-height: 480px;
+}
+.dbox__placeholder p { font-size: .92rem; color: var(--ink-3); max-width: 40ch; margin: 0; }
+.dbox__placeholder small { font-size: .78rem; color: var(--mute); max-width: 44ch; }
+.dbox.is-loaded .dbox__placeholder { display: none; }
+.dbox iframe { display: block; width: 100%; min-height: 700px; border: 0; }
+
+/* --- Spenden-Overlay ------------------------------------------------------ */
+.dbox-modal {
+  position: fixed; inset: 0; z-index: 140;
+  display: grid; place-items: center;
+  padding: var(--gutter);
+  background: rgba(47, 47, 43, .62);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  opacity: 0; visibility: hidden;
+  transition: opacity var(--t-mid) var(--ease-out), visibility var(--t-mid);
+}
+.dbox-modal.is-open { opacity: 1; visibility: visible; }
+.dbox-modal__panel {
+  position: relative;
+  width: min(560px, 100%);
+  max-height: min(90vh, 940px);
+  overflow-y: auto;
+  border-radius: var(--r-lg);
+  background: var(--paper);
+  box-shadow: var(--sh-3);
+  transform: translateY(18px) scale(.98);
+  transition: transform var(--t-mid) var(--ease-spring);
+}
+.dbox-modal.is-open .dbox-modal__panel { transform: none; }
+.dbox-modal__head {
+  position: sticky; top: 0; z-index: 2;
+  display: flex; align-items: flex-start; justify-content: space-between;
+  gap: var(--s-4);
+  padding: var(--s-5);
+  background: var(--paper);
+}
+.dbox-modal__head h2 { font-size: 1.3rem; margin: 0; }
+.dbox-modal__head p { font-size: .86rem; color: var(--ink-3); margin: .3em 0 0; }
+.dbox-modal__close {
+  flex: 0 0 auto;
+  width: 38px; height: 38px; border: 0; border-radius: var(--r-pill);
+  background: rgba(59, 59, 54, .08); color: var(--ink);
+  cursor: pointer; display: grid; place-items: center;
+  transition: background-color var(--t-fast) var(--ease-out), transform var(--t-fast) var(--ease-spring);
+}
+.dbox-modal__close:hover { background: rgba(59, 59, 54, .16); transform: rotate(90deg); }
+.dbox-modal__body { padding: 0 var(--s-5) var(--s-5); }
+.dbox-modal__body .dbox { box-shadow: none; min-height: 640px; background: transparent; }
+.dbox-modal__body .dbox__placeholder { min-height: 320px; }
+
+/* --------------------------------------------------------------------------
+   28. Freiwilligen-Raster
+   -------------------------------------------------------------------------- */
+.crew {
+  list-style: none; margin: 0; padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(124px, 1fr));
+  gap: clamp(1.25rem, 2.5vw, 2rem) clamp(.75rem, 1.6vw, 1.25rem);
+}
+.crew li { margin: 0; text-align: center; }
+.crew figure { margin: 0; }
+.crew img {
+  width: 100%; aspect-ratio: 1/1;
+  object-fit: cover; object-position: 50% 22%;
+  border-radius: var(--r-pill);
+  filter: grayscale(1) contrast(1.04);
+  box-shadow: var(--sh-1);
+  transition:
+    filter var(--t-slow) var(--ease-out),
+    transform var(--t-mid) var(--ease-spring),
+    box-shadow var(--t-mid) var(--ease-out);
+}
+.crew li:hover img { filter: none; transform: translateY(-4px); box-shadow: var(--sh-2); }
+.crew figcaption {
+  margin-top: var(--s-3);
+  font-family: "Red Hat Display", sans-serif;
+  font-size: .84rem; font-weight: 700; letter-spacing: -.015em;
+  line-height: 1.25;
+}
+@media (max-width: 520px) { .crew { grid-template-columns: repeat(auto-fill, minmax(96px, 1fr)); } }
+
+/* --------------------------------------------------------------------------
    27. Donorbox — Einbettung mit Zwei-Klick-Schutz
    Das Widget laedt von donorbox.org. Damit beim blossen Seitenaufruf keine
    IP-Adresse dorthin geht, wird zuerst ein Platzhalter gezeigt; das Skript

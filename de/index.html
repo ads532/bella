@@ -118,13 +118,30 @@
     <p class="lede">Wir bauen Schulen, bringen Kunst dorthin, wo sie fehlt, und lassen eine weltweite Community wachsen, die Geben zum Teil ihres Alltags macht.</p>
 
     <div class="hero__foot">
-      <div class="btn-row">
-        <a class="btn btn--accent btn--lg" href="dona.html">
+      <form class="give" data-give>
+        <div class="give__toggle" role="group" aria-label="Frequenza">
+          <button type="button" data-interval="" aria-pressed="true">Einmalig</button>
+          <button type="button" data-interval="m" aria-pressed="false">Monatlich</button>
+        </div>
+
+        <p class="give__label">Betrag wählen</p>
+        <div class="give__amounts">
+          <button type="button" data-amount="5">5&nbsp;€</button>
+          <button type="button" data-amount="10">10&nbsp;€</button>
+          <button type="button" data-amount="25" aria-pressed="true">25&nbsp;€</button>
+          <button type="button" data-amount="50">50&nbsp;€</button>
+          <button type="button" data-amount="75">75&nbsp;€</button>
+          <button type="button" data-amount="100">100&nbsp;€</button>
+          <input class="give__custom" type="number" min="1" step="1" inputmode="numeric"
+                 placeholder="Anderer Betrag" data-give-custom aria-label="Altro importo">
+        </div>
+
+        <button class="btn btn--accent btn--lg" type="submit">
           <span>Jetzt spenden</span>
           <svg class="arw" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </a>
-        <a class="btn btn--ghost btn--lg" href="#storia">Unsere Geschichte</a>
-      </div>
+        </button>
+        <p class="give__note">100 % fließen in den Schulbau. Sichere Zahlung über Donorbox.</p>
+      </form>
 
       <div class="hero__stats">
         <div class="hero__stat">

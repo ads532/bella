@@ -283,33 +283,44 @@
     }, { passive: true });
   }
 
-  /* --- 12. Donorbox --------------------------------------------------------
-     Das Spendenformular kommt von donorbox.org. Damit beim blossen
-     Seitenaufruf keine IP-Adresse dorthin geht, laedt das Skript erst auf
-     Klick — oder automatisch, wenn im Banner bereits zugestimmt wurde.
+  /* --- 12. Spenden ---------------------------------------------------------
+     Die Auswahl im Hero ist unsere eigene, damit die Startseite schnell
+     bleibt und beim blossen Aufruf nichts an Donorbox geht. Erst beim Klick
+     oeffnet sich deren Formular als iframe — mit Betrag, Intervall und
+     Sprache vorbelegt.
+
+     Die Sprache kommt aus <html lang>, wird also von build.py je Fassung
+     richtig gesetzt. Damit Donorbox sie annimmt, muss die Kampagne dort auf
+     "Auto-detect" stehen.
      ---------------------------------------------------------------------- */
   var DBOX_CAMPAIGN = 'join-the-bevolution';
-  var dboxScriptLoaded = false;
 
-  function loadDboxScript() {
-    if (dboxScriptLoaded) return;
-    dboxScriptLoaded = true;
-    var s = document.createElement('script');
-    s.type = 'module';
-    s.src = 'https://donorbox.org/widgets.js';
-    s.async = true;
-    document.head.appendChild(s);
+  function dboxUrl(opts) {
+    opts = opts || {};
+    var lang = (document.documentElement.lang || 'it').slice(0, 2);
+    var params = ['language=' + lang];
+    if (opts.amount) params.push('amount=' + encodeURIComponent(opts.amount));
+    if (opts.interval) params.push('default_interval=' + encodeURIComponent(opts.interval));
+    return 'https://donorbox.org/embed/' + DBOX_CAMPAIGN + '?' + params.join('&');
   }
 
-  function mountDbox(box) {
-    if (!box || box.classList.contains('is-loaded')) return;
+  function mountDbox(box, opts) {
+    if (!box) return;
+    var existing = box.querySelector('iframe');
+    var url = dboxUrl(opts);
+    if (existing) {                       // schon geladen — nur Werte auffrischen
+      if (existing.src !== url) existing.src = url;
+      return;
+    }
+    var frame = document.createElement('iframe');
+    frame.src = url;
+    frame.setAttribute('name', 'donorbox');
+    frame.setAttribute('allow', 'payment');
+    frame.setAttribute('title', 'Donorbox');
+    frame.setAttribute('scrolling', 'no');
+    frame.style.height = '900px';
+    box.appendChild(frame);
     box.classList.add('is-loaded');
-    var widget = document.createElement('dbox-widget');
-    widget.setAttribute('campaign', DBOX_CAMPAIGN);
-    widget.setAttribute('type', 'donation_form');
-    widget.setAttribute('enable-auto-scroll', 'true');
-    box.appendChild(widget);
-    loadDboxScript();
   }
 
   document.addEventListener('click', function (e) {
@@ -328,40 +339,87 @@
   autoMountIfConsented();
   document.addEventListener('be:consent', autoMountIfConsented);
 
-  /* --- Spenden-Overlay ---------------------------------------------------- */
-  var dboxModal = document.querySelector('[data-dbox-modal]');
-  if (dboxModal) {
-    var lastFocus = null;
-    var openModal = function () {
-      lastFocus = document.activeElement;
-      dboxModal.hidden = false;
-      requestAnimationFrame(function () {
-        dboxModal.classList.add('is-open');
-        document.body.classList.add('is-locked');
-        var focusable = dboxModal.querySelector('button, a, input');
-        if (focusable) focusable.focus();
+  /* --- Auswahlbox im Hero -------------------------------------------------- */
+  var give = document.querySelector('[data-give]');
+  var giveState = { amount: '25', interval: '' };
+
+  if (give) {
+    var custom = give.querySelector('[data-give-custom]');
+    var amountButtons = give.querySelectorAll('[data-amount]');
+
+    var selectAmount = function (value, fromCustom) {
+      giveState.amount = value;
+      amountButtons.forEach(function (b) {
+        b.setAttribute('aria-pressed', String(!fromCustom && b.dataset.amount === value));
       });
-      if (readConsent() === 'all') mountDbox(dboxModal.querySelector('[data-dbox]'));
-    };
-    var closeModal = function () {
-      dboxModal.classList.remove('is-open');
-      document.body.classList.remove('is-locked');
-      setTimeout(function () { dboxModal.hidden = true; }, 340);
-      if (lastFocus) lastFocus.focus();
+      if (!fromCustom && custom) custom.value = '';
     };
 
+    give.addEventListener('click', function (e) {
+      var amount = e.target.closest('[data-amount]');
+      if (amount) { selectAmount(amount.dataset.amount); return; }
+      var interval = e.target.closest('[data-interval]');
+      if (interval) {
+        giveState.interval = interval.dataset.interval;
+        give.querySelectorAll('[data-interval]').forEach(function (b) {
+          b.setAttribute('aria-pressed', String(b === interval));
+        });
+      }
+    });
+
+    if (custom) {
+      custom.addEventListener('input', function () {
+        if (custom.value) selectAmount(custom.value, true);
+        else selectAmount('25');
+      });
+    }
+
+    give.addEventListener('submit', function (e) {
+      e.preventDefault();
+      openDboxModal(giveState);
+    });
+  }
+
+  /* --- Spenden-Overlay ---------------------------------------------------- */
+  var dboxModal = document.querySelector('[data-dbox-modal]');
+  var lastFocus = null;
+
+  function openDboxModal(opts) {
+    if (!dboxModal) {
+      // Ohne Overlay (oder ohne JS) fuehrt der Weg direkt zu Donorbox.
+      location.href = dboxUrl(opts).replace('/embed/', '/');
+      return;
+    }
+    lastFocus = document.activeElement;
+    dboxModal.hidden = false;
+    requestAnimationFrame(function () {
+      dboxModal.classList.add('is-open');
+      document.body.classList.add('is-locked');
+      var close = dboxModal.querySelector('[data-dbox-close]');
+      if (close) close.focus();
+    });
+    mountDbox(dboxModal.querySelector('[data-dbox]'), opts);
+  }
+
+  function closeDboxModal() {
+    if (!dboxModal) return;
+    dboxModal.classList.remove('is-open');
+    document.body.classList.remove('is-locked');
+    setTimeout(function () { dboxModal.hidden = true; }, 340);
+    if (lastFocus) lastFocus.focus();
+  }
+
+  if (dboxModal) {
     document.addEventListener('click', function (e) {
-      var opener = e.target.closest('[data-dbox-open]');
-      if (opener) {
-        // Ohne JavaScript bleibt der Link auf dona.html als Rueckfallebene.
+      if (e.target.closest('[data-dbox-open]')) {
         e.preventDefault();
-        openModal();
+        openDboxModal(giveState);
         return;
       }
-      if (e.target.closest('[data-dbox-close]') || e.target === dboxModal) closeModal();
+      if (e.target.closest('[data-dbox-close]') || e.target === dboxModal) closeDboxModal();
     });
     document.addEventListener('keydown', function (e) {
-      if (e.key === 'Escape' && dboxModal.classList.contains('is-open')) closeModal();
+      if (e.key === 'Escape' && dboxModal.classList.contains('is-open')) closeDboxModal();
     });
   }
 

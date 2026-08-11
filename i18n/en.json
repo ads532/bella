@@ -352,5 +352,11 @@
   "magpage.dully.l1": "<b>Live performance</b> with our students at the school.",
   "magpage.dully.l2": "<b>Appearance at RUCU University</b> during the BE presentation.",
   "magpage.dully.l3": "<b>Social media storytelling</b> and digital PR.",
-  "magpage.dully.l4": "<b>Cultural exchange</b> between local and international creatives."
+  "magpage.dully.l4": "<b>Cultural exchange</b> between local and international creatives.",
+  "give.once": "Give once",
+  "give.monthly": "Monthly",
+  "give.label": "Choose an amount",
+  "give.custom": "Other amount",
+  "give.submit": "Donate now",
+  "give.note": "100% goes to building the school. Secure payment via Donorbox."
 }

@@ -352,5 +352,11 @@
   "magpage.dully.l1": "<b>Auftritt</b> mit unseren Schülerinnen und Schülern an der Schule.",
   "magpage.dully.l2": "<b>Teilnahme an der RUCU University</b> während der Präsentation von BE.",
   "magpage.dully.l3": "<b>Erzählen auf Social Media</b> und digitale PR.",
-  "magpage.dully.l4": "<b>Kultureller Austausch</b> zwischen lokalen und internationalen Kreativen."
+  "magpage.dully.l4": "<b>Kultureller Austausch</b> zwischen lokalen und internationalen Kreativen.",
+  "give.once": "Einmalig",
+  "give.monthly": "Monatlich",
+  "give.label": "Betrag wählen",
+  "give.custom": "Anderer Betrag",
+  "give.submit": "Jetzt spenden",
+  "give.note": "100 % fließen in den Schulbau. Sichere Zahlung über Donorbox."
 }

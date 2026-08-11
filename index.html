@@ -116,13 +116,31 @@
     <p class="lede" data-i18n="hero.lede">Costruiamo scuole, portiamo l'arte dove serve e creiamo una community globale che rende la beneficenza parte del proprio stile di vita.</p>
 
     <div class="hero__foot">
-      <div class="btn-row">
-        <a class="btn btn--accent btn--lg" href="dona.html">
-          <span data-i18n="cta.donate">Dona ora</span>
+      <form class="give" data-give>
+        <div class="give__toggle" role="group" aria-label="Frequenza">
+          <button type="button" data-interval="" aria-pressed="true" data-i18n="give.once">Una volta</button>
+          <button type="button" data-interval="m" aria-pressed="false" data-i18n="give.monthly">Ogni mese</button>
+        </div>
+
+        <p class="give__label" data-i18n="give.label">Scegli l'importo</p>
+        <div class="give__amounts">
+          <button type="button" data-amount="5">5&nbsp;€</button>
+          <button type="button" data-amount="10">10&nbsp;€</button>
+          <button type="button" data-amount="25" aria-pressed="true">25&nbsp;€</button>
+          <button type="button" data-amount="50">50&nbsp;€</button>
+          <button type="button" data-amount="75">75&nbsp;€</button>
+          <button type="button" data-amount="100">100&nbsp;€</button>
+          <input class="give__custom" type="number" min="1" step="1" inputmode="numeric"
+                 placeholder="Altro importo" data-give-custom
+                 data-i18n-placeholder="give.custom" aria-label="Altro importo">
+        </div>
+
+        <button class="btn btn--accent btn--lg" type="submit">
+          <span data-i18n="give.submit">Dona ora</span>
           <svg class="arw" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </a>
-        <a class="btn btn--ghost btn--lg" href="#storia" data-i18n="cta.discover">Scopri la nostra storia</a>
-      </div>
+        </button>
+        <p class="give__note" data-i18n="give.note">Il 100% va alla costruzione della scuola. Pagamento sicuro tramite Donorbox.</p>
+      </form>
 
       <div class="hero__stats">
         <div class="hero__stat">
