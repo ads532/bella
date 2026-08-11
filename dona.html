@@ -23,12 +23,15 @@
 <link rel="preload" href="assets/fonts/red-hat-display-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/fonts/red-hat-text-latin.woff2" as="font" type="font/woff2" crossorigin>
 <script>
-/* Hero-Ausrichtung aus der URL lesen (?layout=right). Steht inline im Kopf,
-   damit die Seite nicht kurz in der falschen Anordnung aufblitzt. */
+/* Gestaltungsvarianten aus der URL lesen: ?layout=right und ?corners=sharp.
+   Steht inline im Kopf, damit die Seite nicht kurz falsch aufblitzt. */
 (function () {
   try {
-    var l = new URLSearchParams(location.search).get('layout');
+    var p = new URLSearchParams(location.search);
+    var l = p.get('layout');
     if (l === 'right' || l === 'left') document.documentElement.dataset.layout = l;
+    var c = p.get('corners');
+    if (c === 'sharp' || c === 'round') document.documentElement.dataset.corners = c;
   } catch (e) {}
 })();
 </script>

@@ -158,6 +158,30 @@
 }
 
 /* --------------------------------------------------------------------------
+   1c. Kantige Variante (?corners=sharp)
+   Der Verein arbeitet sonst nicht mit runden Ecken. Da saemtliche Radien
+   als Variablen definiert sind, genuegt es, sie hier auf null zu setzen:
+   Bilder, Karten, Knoepfe, Eingabefelder und die Sprachwahl werden damit
+   in einem Zug kantig. Ausgenommen bleiben nur die Striche des Menue-Icons
+   und die Bildlaufleiste, die sonst hart wirken.
+   -------------------------------------------------------------------------- */
+:root[data-corners="sharp"] {
+  --r-sm: 0;
+  --r-md: 0;
+  --r-lg: 0;
+  --r-xl: 0;
+  --r-pill: 0;
+}
+/* Portraets werden zu Quadraten statt Kreisen */
+:root[data-corners="sharp"] .crew img,
+:root[data-corners="sharp"] .artist__ph,
+:root[data-corners="sharp"] .quote__by img,
+:root[data-corners="sharp"] .socials a { border-radius: 0; }
+
+/* Der Fokusrahmen darf eine Spur weich bleiben, sonst wirkt er wie ein Fehler */
+:root[data-corners="sharp"] :focus-visible { border-radius: 0; }
+
+/* --------------------------------------------------------------------------
    2. Reset & base
    -------------------------------------------------------------------------- */
 *, *::before, *::after { box-sizing: border-box; }
